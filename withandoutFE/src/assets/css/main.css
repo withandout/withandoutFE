@@ -1,0 +1,56 @@
+main {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1.5rem;
+}
+
+.motiv {
+  display: flex;
+  flex-direction: column;
+  width: 22rem;
+  height: 21rem;
+  background-image: url('../../assets/img/running.jpeg');
+  background-color: rgba(255, 255, 255, 0.9);
+  background-size: cover;
+  background-position: 60%;
+
+  text-align: center;
+  position: relative;
+  isolation: isolate;
+  border-radius: 0.8rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
+}
+
+.subSen {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-top: 1rem;
+}
+.mainSen {
+  padding-top: 0.5rem;
+  line-height: 1.5;
+  font-size: 1.7rem;
+}
+
+.motiv::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.6;
+}
+
+.weatherSec,
+.nameCard {
+  width: 18rem;
+  height: 21rem;
+  background-color: #fefefe;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
+  text-align: center;
+}
+
+.nameCard {
+  width: 40rem;
+}

@@ -27,6 +27,5 @@ const loginUser = () => {
 </script>
 
 <style scoped>
-@import '@/assets/css/reset.css';
 @import '@/assets/css/login.css';
 </style>
