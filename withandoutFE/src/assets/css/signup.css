@@ -1,0 +1,80 @@
+.signup {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.poster {
+  margin-left: 4rem;
+  margin-top: 6rem;
+  width: 30rem;
+  height: 40rem;
+  border-radius: 10px;
+}
+
+form {
+  margin-left: 4rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.inputArea {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.3rem;
+}
+input,
+select {
+  width: 20rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  height: 2rem;
+  border: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 25%);
+}
+
+.setInput {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#gender {
+  margin-left: 2rem;
+  width: 5rem;
+}
+
+#age {
+  margin-left: 2rem;
+  width: 7rem;
+}
+
+button {
+  border: none;
+  margin-left: 1rem;
+  background-color: transparent;
+}
+
+.imageArea {
+  position: absolute;
+  top: 15rem;
+  left: 70rem;
+}
+
+.htmlImage {
+  margin-bottom: 0.5rem;
+}
+.signupBtn {
+  align-self: flex-end;
+  background-color: #7aa6ff;
+  width: 6rem;
+  height: 2.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-bottom: 7rem;
+}

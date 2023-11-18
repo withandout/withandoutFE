@@ -6,6 +6,8 @@ import { defineStore } from 'pinia';
 export const useUserStore = defineStore('user', () => {
   const REST_API_USER = `http://localhost:8080/user`;
   const router = useRouter();
+  const checkId = ref(false);
+  const checkNickname = ref(false);
   // 로그인
   const login = (user) => {
     axios({
@@ -27,15 +29,54 @@ export const useUserStore = defineStore('user', () => {
   };
 
   // 회원가입
-  const signupUser = (user) => {
+  const signupUser = (formData) => {
     axios({
       url: `${REST_API_USER}/signup`,
+      headers: { 'Content-Type': 'multipart/form-data' },
       method: 'POST',
-      data: user,
+      data: formData,
     }).then(() => {
       alert('회원가입 되었습니다.');
       router.push('/');
     });
   };
-  return { login, signupUser };
+
+  // 아이디 중복체크
+  const dupCheckId = (userId) => {
+    axios({
+      url: `${REST_API_USER}/validate`,
+      method: 'POST',
+      data: { userId: userId },
+    }).then((response) => {
+      // 어떤거 날려주는지 확인하고 true/false 값 바꾸기
+      // 406 -> 현재 존재한다는 의미
+      // 200 -> 존재하지 않으면 200, 사용할 수 있다는 의미
+      if (response.status === 200) {
+        checkId.value = true;
+      }
+    });
+  };
+
+  // 닉네임 중복체크
+  const dupCheckNick = (nickname) => {
+    axios({
+      url: `${REST_API_USER}/validate`,
+      method: 'POST',
+      data: { nickname: nickname },
+    }).then((response) => {
+      // 어떤거 날려주는지 확인하고 true/false 값 바꾸기
+      if (response.status === 200) {
+        checkNickname.value = true;
+      }
+    });
+  };
+
+  return {
+    login,
+    signupUser,
+    checkId,
+    checkNickname,
+    dupCheckId,
+    dupCheckNick,
+  };
 });
