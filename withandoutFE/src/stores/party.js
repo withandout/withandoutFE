@@ -1,11 +1,12 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
-import { defineStore } from 'pinia';
+import { acceptHMRUpdate, defineStore } from 'pinia';
 
 export const usePartyStore = defineStore('party', () => {
   const REST_API_PARTY = `http://localhost:8080/party`;
   const router = useRouter();
+  const invitingMembers = ref({});
   const checkName = ref(false);
 
   // 아이디 중복체크
@@ -24,6 +25,7 @@ export const usePartyStore = defineStore('party', () => {
     });
   };
 
+  // 파티 만들기
   const makeParty = (formData) => {
     axios({
       url: `${REST_API_PARTY}/new`,
@@ -35,9 +37,22 @@ export const usePartyStore = defineStore('party', () => {
       router.push('/home');
     });
   };
+
+  // 해당 파티의 유저 조회하기
+  const selectMembers = (partyNo) => {
+    const promise = axios({
+      url: `${REST_API_PARTY}/member/${partyNo}`,
+      method: 'GET',
+    });
+    const dataPromise = promise.then((res) => res.data);
+    return dataPromise;
+  };
+
   return {
     checkName,
+    invitingMembers,
     dupPartyName,
     makeParty,
+    selectMembers,
   };
 });

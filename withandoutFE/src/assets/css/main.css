@@ -72,6 +72,9 @@ main {
 }
 
 .invitingView {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 40rem;
   height: 27rem;
   margin-top: -2rem;
@@ -82,4 +85,6 @@ main {
   font-size: 1.5rem;
   font-weight: 700;
   text-align: left;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
 }

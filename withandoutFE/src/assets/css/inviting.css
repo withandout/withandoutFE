@@ -1,0 +1,83 @@
+.wrapParties {
+  height: 18rem;
+  overflow: scroll;
+}
+.invitingBtns {
+  display: flex;
+  justify-content: flex-end;
+}
+.makeParty,
+.joinParty {
+  margin-right: 2rem;
+  background-color: var(--btn-color);
+  box-shadow: var(--btn-shadow);
+  width: 7rem;
+  height: 2.5rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.makeParty {
+  background-color: #4be689;
+}
+
+.invitingBtns button:hover {
+  cursor: pointer;
+}
+
+.parties {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 2rem;
+}
+
+.invitingParty {
+  width: 36rem;
+  height: 8rem;
+  border: 1px solid #a3a3a3;
+  border-radius: 10px;
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: space-evenly;
+}
+.invitingImg {
+  width: 6rem;
+  height: 6rem;
+  align-self: center;
+}
+
+.invitingInfo {
+  width: 26rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.partyInfo {
+  display: flex;
+}
+
+.partyName {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.partySports {
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+.partyContent {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.memberImg {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0.5rem;
+}

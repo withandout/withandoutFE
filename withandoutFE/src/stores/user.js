@@ -8,6 +8,7 @@ export const useUserStore = defineStore('user', () => {
   const router = useRouter();
   const checkId = ref(false);
   const checkNickname = ref(false);
+  const partyList = ref({});
   // 로그인
   const login = (user) => {
     axios({
@@ -76,16 +77,21 @@ export const useUserStore = defineStore('user', () => {
     axios({
       url: `${REST_API_USER}/myparty/${userNo}`,
       method: 'GET',
-    }).then((response) => {
-      console.log(response.data);
-    });
+    })
+      .then((response) => {
+        partyList.value = response.data;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return {
-    login,
-    signupUser,
+    partyList,
     checkId,
     checkNickname,
+    login,
+    signupUser,
     dupCheckId,
     dupCheckNick,
     selectUserParties,
