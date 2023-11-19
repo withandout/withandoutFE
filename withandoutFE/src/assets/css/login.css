@@ -1,4 +1,44 @@
 .loginForm {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.loginForm label {
+  width: 30rem;
+  height: 1.5rem;
+}
+
+.loginForm input {
+  width: 30rem;
+  height: 2rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  border: none;
+  box-shadow: var(--btn-shadow);
+}
+
+.btns {
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btns button {
+  background-color: var(--btn-color);
+  width: 6rem;
+  height: 2.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-bottom: 7rem;
+  border: none;
+}
+.signupBtn {
+  margin-right: 1rem;
+}
+
+.loginBtn {
+  margin-left: 1rem;
 }

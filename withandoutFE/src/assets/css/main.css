@@ -1,7 +1,12 @@
 main {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   margin-top: 1.5rem;
+}
+
+.mainRow {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .motiv {
@@ -42,7 +47,9 @@ main {
 }
 
 .weatherSec,
-.nameCard {
+.nameCard,
+.calenderView,
+.invitingView {
   width: 18rem;
   height: 21rem;
   background-color: #fefefe;
@@ -54,4 +61,25 @@ main {
 .nameCard {
   width: 40rem;
   height: 18rem;
+}
+.calenderView {
+  width: 50.5rem;
+  height: 24rem;
+  margin-top: 1rem;
+  background-color: #fefefe;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
+}
+
+.invitingView {
+  width: 40rem;
+  height: 27rem;
+  margin-top: -2rem;
+  background-color: #fefefe;
+}
+
+.invitedText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: left;
 }

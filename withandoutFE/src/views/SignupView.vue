@@ -118,7 +118,6 @@ const readInputFile = (e) => {
     };
     reader.readAsDataURL(f);
   });
-  // 이미지를 변환해보자
 };
 
 const signup = () => {
@@ -141,7 +140,7 @@ const signup = () => {
 
   const formData = new FormData();
   formData.append('user', userToBlob);
-  formData.append('image', fileArr[0]);
+  // formData.append('image', fileArr[0]);
 
   // 아이디와 비밀번호 형식, 중복확인이 모두 완료되었을 떄
   if (

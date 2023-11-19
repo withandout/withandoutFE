@@ -1,9 +1,8 @@
-.signup {
+.makePartyView {
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  position: relative;
 }
 .poster {
   width: 30rem;
@@ -12,7 +11,9 @@
 }
 
 form {
-  margin-left: 4rem;
+  display: flex;
+  flex-direction: column;
+  margin-right: 4rem;
 }
 
 h2 {
@@ -20,6 +21,7 @@ h2 {
   font-weight: 700;
   margin-bottom: 2rem;
 }
+
 .inputArea {
   display: flex;
   flex-direction: column;
@@ -28,29 +30,27 @@ h2 {
 label {
   margin-bottom: 0.3rem;
 }
-input,
-select {
+
+input {
   width: 20rem;
   border-radius: 5px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   height: 2rem;
   border: none;
   box-shadow: var(--btn-shadow);
 }
-
 .setInput {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
-#gender {
-  margin-left: 2rem;
-  width: 5rem;
-}
-
-#age {
-  margin-left: 2rem;
+#exercise {
   width: 7rem;
+}
+
+#size {
+  width: 7rem;
+  margin-right: 20rem;
 }
 
 button {
@@ -59,10 +59,19 @@ button {
   background-color: transparent;
 }
 
+textarea {
+  width: 40rem;
+  height: 10rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  border: none;
+  box-shadow: var(--btn-shadow);
+}
+
 .imageArea {
   position: absolute;
-  top: 17rem;
-  left: 70rem;
+  top: 13.5rem;
+  left: 37rem;
 }
 
 .htmlImage {
@@ -77,4 +86,18 @@ button {
   font-size: 1rem;
   border-radius: 5px;
   margin-bottom: 7rem;
+}
+
+.makePartyBtn {
+  align-self: flex-end;
+  background-color: var(--btn-color);
+  width: 6rem;
+  height: 2.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.makePartyBtn:hover {
+  cursor: pointer;
 }

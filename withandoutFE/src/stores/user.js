@@ -18,7 +18,7 @@ export const useUserStore = defineStore('user', () => {
       console.log(res);
       if (res.status === 200) {
         console.log(res.data);
-        const sessionId = res.data.sessionId;
+        const sessionId = JSON.stringify(res.data);
         sessionStorage.setItem('sessionId', sessionId);
         alert('로그인 완료되었습니다.');
         router.push('home');
@@ -71,6 +71,16 @@ export const useUserStore = defineStore('user', () => {
     });
   };
 
+  // 유저 가입 파티 조회
+  const selectUserParties = (userNo) => {
+    axios({
+      url: `${REST_API_USER}/myparty/${userNo}`,
+      method: 'GET',
+    }).then((response) => {
+      console.log(response.data);
+    });
+  };
+
   return {
     login,
     signupUser,
@@ -78,5 +88,6 @@ export const useUserStore = defineStore('user', () => {
     checkNickname,
     dupCheckId,
     dupCheckNick,
+    selectUserParties,
   };
 });

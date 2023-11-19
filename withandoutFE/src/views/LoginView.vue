@@ -4,10 +4,15 @@
     <input type="text" id="id" v-model="userId" />
     <label for="password">비밀번호</label>
     <input type="password" id="password" v-model="password" />
-    <button @click.prevent="() => router.push({ name: 'signup' })">
-      회원가입
-    </button>
-    <button @click.prevent="loginUser">로그인</button>
+    <section class="btns">
+      <button
+        class="signupBtn"
+        @click.prevent="() => router.push({ name: 'signup' })"
+      >
+        회원가입
+      </button>
+      <button class="loginBtn" @click.prevent="loginUser">로그인</button>
+    </section>
   </form>
 </template>
 
