@@ -8,13 +8,9 @@ export const useUserStore = defineStore('user', () => {
   const router = useRouter();
   const checkId = ref(false);
   const checkNickname = ref(false);
-<<<<<<< Updated upstream
   const partyList = ref({});
-=======
-
   const alertOn = ref(false);
 
->>>>>>> Stashed changes
   // 로그인
   const login = (user) => {
     axios({
@@ -80,7 +76,6 @@ export const useUserStore = defineStore('user', () => {
     });
   };
 
-<<<<<<< Updated upstream
   // 유저 가입 파티 조회
   const selectUserParties = (userNo) => {
     axios({
@@ -94,14 +89,12 @@ export const useUserStore = defineStore('user', () => {
         console.log(e);
       });
   };
-=======
   const alertToggle = () => {
     alertOn.value = (! alertOn.value);
     console.log(alertOn.value)
   }
 
   const getAlertOn = () => alertOn.value;
->>>>>>> Stashed changes
 
   return {
     partyList,
@@ -111,12 +104,9 @@ export const useUserStore = defineStore('user', () => {
     signupUser,
     dupCheckId,
     dupCheckNick,
-<<<<<<< Updated upstream
     selectUserParties,
-=======
     alertOn,
     alertToggle,
     getAlertOn,
->>>>>>> Stashed changes
   };
 });
