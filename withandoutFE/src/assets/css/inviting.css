@@ -34,6 +34,10 @@
   margin-left: 2rem;
 }
 
+.parties:hover {
+  cursor: pointer;
+}
+
 .invitingParty {
   width: 36rem;
   height: 8rem;

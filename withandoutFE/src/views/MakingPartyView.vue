@@ -6,7 +6,7 @@
         <label for="name">파티 이름</label>
         <div>
           <input type="text" id="name" v-model="name" required />
-          <span v-if="store.checkName">확인 완료</span>
+          <span class="complete" v-if="store.checkName">확인 완료</span>
           <button v-else @click.prevent="store.dupPartyName(name)">
             중복확인
           </button>
@@ -90,7 +90,10 @@ const makeParty = () => {
 
   const formData = new FormData();
   formData.append('party', partyToBlob);
-  formData.append('image', fileArr[0]);
+
+  if (fileArr !== undefined) {
+    formData.append('image', fileArr[0]);
+  }
 
   if (store.checkName) {
     store.makeParty(formData);

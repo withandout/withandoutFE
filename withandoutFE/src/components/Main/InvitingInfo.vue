@@ -4,7 +4,12 @@
     <!-- axios로 data 가져와서 v-for로 보여줄 것 -->
     <section class="wrapParties">
       <section class="parties" v-for="party in store.partyList">
-        <InvitingParty :party="party" />
+        <InvitingParty
+          :party="party"
+          @click="
+            router.push({ name: 'detail', params: { partyNo: party.partyNo } })
+          "
+        />
       </section>
     </section>
     <section class="invitingBtns">

@@ -35,6 +35,7 @@ export const usePartyStore = defineStore('party', () => {
     }).then(() => {
       alert('파티가 생성되었습니다.');
       router.push('/home');
+      checkName.value = false;
     });
   };
 

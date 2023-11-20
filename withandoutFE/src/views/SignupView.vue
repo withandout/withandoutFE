@@ -7,7 +7,7 @@
         <label for="id">아이디</label>
         <div>
           <input type="text" id="id" v-model="userId" required />
-          <span v-if="store.checkId">확인 완료</span>
+          <span class="complete" v-if="store.checkId">확인 완료</span>
           <button v-else @click.prevent="store.dupCheckId(userId)">
             중복확인
           </button>
@@ -21,7 +21,7 @@
         <label for="nickname">닉네임</label>
         <div>
           <input type="text" id="nickname" v-model="nickname" required />
-          <span v-if="store.checkNickname">확인 완료</span>
+          <span class="complete" v-if="store.checkNickname">확인 완료</span>
           <button v-else @click.prevent="store.dupCheckNick(nickname)">
             중복확인
           </button>
@@ -140,7 +140,9 @@ const signup = () => {
 
   const formData = new FormData();
   formData.append('user', userToBlob);
-  // formData.append('image', fileArr[0]);
+  if (fileArr !== undefined) {
+    formData.append('image', fileArr[0]);
+  }
 
   // 아이디와 비밀번호 형식, 중복확인이 모두 완료되었을 떄
   if (

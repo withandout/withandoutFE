@@ -53,9 +53,11 @@ input {
   margin-right: 20rem;
 }
 
-button {
+button,
+.complete {
   border: none;
   margin-left: 1rem;
+  font-size: 1rem;
   background-color: transparent;
 }
 

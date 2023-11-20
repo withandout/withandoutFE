@@ -39,6 +39,8 @@ export const useUserStore = defineStore('user', () => {
     }).then(() => {
       alert('회원가입 되었습니다.');
       router.push('/');
+      checkId.value = false;
+      checkNickname.value = false;
     });
   };
 

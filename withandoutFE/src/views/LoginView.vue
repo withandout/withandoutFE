@@ -1,17 +1,20 @@
 <template>
   <form class="loginForm">
     <label for="id">아이디</label>
-    <input type="text" id="id" v-model="userId" />
+    <input type="text" id="id" v-model="userId" tabindex="1" />
     <label for="password">비밀번호</label>
-    <input type="password" id="password" v-model="password" />
+    <input type="password" id="password" v-model="password" tabindex="2" />
     <section class="btns">
+      <button class="loginBtn" @click.prevent="loginUser" tabindex="3">
+        로그인
+      </button>
       <button
         class="signupBtn"
         @click.prevent="() => router.push({ name: 'signup' })"
+        tabindex="-1"
       >
         회원가입
       </button>
-      <button class="loginBtn" @click.prevent="loginUser">로그인</button>
     </section>
   </form>
 </template>

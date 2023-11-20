@@ -29,6 +29,11 @@ const router = createRouter({
       name: 'joinParty',
       component: () => import('@/views/JoinPartyView.vue'),
     },
+    {
+      path: '/party/detail/:partyNo',
+      name: 'detail',
+      component: () => import('@/views/DetailPartyView.vue'),
+    },
   ],
 });
 
