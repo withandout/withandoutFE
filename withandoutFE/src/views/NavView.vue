@@ -14,7 +14,7 @@
       <template v-slot:activator="localTownOn" location="end center" origin="auto">
         <font-awesome-icon class="icons" icon="fa-solid fa-location-crosshairs" @click.prevent="toggleTown"/>
       </template>
-      <TownValidation/>
+      <TownValidation :townValid="townValid" :userNo="userNo"/>
     </v-menu>
       
     </span>
@@ -22,6 +22,7 @@
       <font-awesome-icon
         class="icons"
         icon="fa-solid fa-arrow-right-from-bracket"
+        @click.prevent="userStore.logout()"
       />
     </span>
     <span
@@ -33,14 +34,15 @@
   </nav>
 </template>
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user';
 import InvitationAlert from '../components/Main/InvitationAlert.vue';
 import TownValidation from '../components/Main/TownValidation.vue';
 
 const router = useRouter();
-const store = useUserStore();
+const userStore = useUserStore();
+const townValid = ref(false);
 
 const localAlertOn = ref(false);
 const localTownOn = ref(false);
@@ -49,14 +51,19 @@ const menu = ref(false);
 
 const toggleAlert = () => {
   localAlertOn.value = (! localAlertOn.value);
-  console.log(localAlertOn.value)
 }
 
 const toggleTown = () => {
   localTownOn.value = (! localTownOn.value);
-  console.log(localTownOn.value)
 }
- 
+
+onMounted(() => {
+  const userNo = JSON.parse(sessionStorage.getItem('sessionId')).userNo;
+  userStore.isTownAuthorized(userNo);
+  console.log("userNo: " + userNo);
+  console.log("townAuthed: " + userStore.townAuthorized);
+})
+
 </script>
 <style scoped>
 @import '@/assets/css/nav.css';

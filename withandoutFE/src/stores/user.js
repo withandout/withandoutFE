@@ -10,6 +10,7 @@ export const useUserStore = defineStore('user', () => {
   const checkNickname = ref(false);
   const partyList = ref({});
   const alertOn = ref(false);
+  const townAuthorized = ref(false);
 
   // 로그인
   const login = (user) => {
@@ -27,6 +28,21 @@ export const useUserStore = defineStore('user', () => {
         router.push('home');
       } else {
         alert('정보를 다시 확인해주세요.');
+      }
+    });
+  };
+
+  // 로그아웃
+  const logout = () => {
+    axios({
+      url: `${REST_API_USER}/logout`,
+      method: 'GET',
+    }).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        sessionStorage.removeItem('sessionId');
+        alert('로그아웃 되었습니다.');
+        router.push('/login');
       }
     });
   };
@@ -89,18 +105,64 @@ export const useUserStore = defineStore('user', () => {
         console.log(e);
       });
   };
+
+  // alert 켜기
   const alertToggle = () => {
     alertOn.value = (! alertOn.value);
     console.log(alertOn.value)
   }
-
+  // alert 끄기
   const getAlertOn = () => alertOn.value;
+
+  // 동네 인증 완료?
+  const isTownAuthorized = (userNo) => {
+    axios({
+      url: `${REST_API_USER}/auth/${userNo}`,
+      method: 'GET',
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          if (response.data == 1) {
+            townAuthorized.value = true;
+          } 
+          else {
+            townAuthorized.value = false;
+          }
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  
+  const townAuthorize = (userNo) => {
+    axios({
+      url: `${REST_API_USER}/auth`,
+      method: 'PUT',
+      data: {
+        userNo: userNo,
+        region: '강남구'
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          // 수정이 잘 되었다면 반대로 Toggle
+          townAuthorized.value = (! townAuthorized);
+          alert('동네 인증이 완료되었습니다!');
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        alert('인증이 완료되지 않았습니다. 등록했던 동네와 현재 위치를 확인해주세요!');
+      });
+  };
 
   return {
     partyList,
     checkId,
     checkNickname,
     login,
+    logout,
     signupUser,
     dupCheckId,
     dupCheckNick,
@@ -108,5 +170,8 @@ export const useUserStore = defineStore('user', () => {
     alertOn,
     alertToggle,
     getAlertOn,
+    isTownAuthorized,
+    townAuthorized,
+    townAuthorize,
   };
 });

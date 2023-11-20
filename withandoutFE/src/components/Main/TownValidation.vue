@@ -17,10 +17,11 @@
         class="text-h6 font-weight-bold text-black mb-4"
         color="blue"
         variant="flat"
-        disabled="townValid"
+        :disabled="townAuthorized"
+        @click="userStore.townAuthorize(userNo)"
       >
       <!-- 값 prop 받아와서 확인해주셈 -->
-      <h4 v-if="townValid" class="text-h6 font-weight-bold mb-1 text-center">인증 완료</h4>
+      <h4 v-if="townAuthorized" class="text-h6 font-weight-bold mb-1 text-center">인증 완료</h4>
       <h4 v-else>인증 하기</h4> 
       </v-btn>
       </v-sheet>
@@ -28,15 +29,14 @@
   </template>
 
 <script setup>
+  import { useUserStore } from '@/stores/user';
   import { ref } from 'vue';
+  
+  const userStore = useUserStore();
 
-  // Prop 받은 값 넣어주기.
-  const townValid = ref(true);
+  const townAuthorized = userStore.townAuthorized;
 
-  const townValidToggle = () => {
-    townValid.value = (! townValid.value);
-  }
-
+  const userNo = JSON.parse(sessionStorage.getItem('sessionId')).userNo;
 </script>
 
 <style scoped>
