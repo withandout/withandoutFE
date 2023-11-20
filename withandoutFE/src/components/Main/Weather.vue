@@ -1,10 +1,19 @@
 <template>
   <section class="weatherSec">
-    <h1>강남구</h1>
-    <div>{{ tmp }}℃</div>
-    <div>{{ sky }}</div>
-    <div>습도 {{ reh }}%</div>
-    <div>강수형태: {{ pty }}</div>
+    <h1 class="loca">강남구</h1>
+    <img
+      class="weather"
+      v-if="sky === '구름 많음'"
+      src="@/assets/img/weather/weather_cloudy.png"
+    />
+    <img
+      class="weather"
+      v-else-if="sky === '흐림'"
+      src="@/assets/img/weather/weather_foggy.png"
+    />
+    <img class="weather" v-else src="@/assets/img/weather/weather_sunny.png" />
+    <div class="tmp">{{ tmp }}℃</div>
+    <div class="reh">습도 {{ reh }}%</div>
   </section>
 </template>
 
@@ -28,7 +37,17 @@ let day = today.getDate();
 let hours = today.getHours();
 month = month < 10 ? '0' + month : month;
 day = day < 10 ? '0' + day : day;
+//hours = hours < 10 ? '0' + hours + '00' : hours + '00';
+const time = ['0200', '0500', '0800', '1100', '1400', '1700', '2000', '2300'];
+if (hours % 3 === 1) {
+  hours = hours - 2;
+  if (hours < 0) hours = 23;
+} else if (hours % 3 === 0) {
+  hours = hours - 1;
+  if (hours < 0) hours = 24;
+}
 hours = hours < 10 ? '0' + hours + '00' : hours + '00';
+console.log(hours);
 const todayStr = `${year}${month}${day}`;
 
 // 날씨 API 가져오는 함수
@@ -104,7 +123,7 @@ const getWeatherAPI = async () => {
         });
       });
   } catch (err) {
-    console.log('error');
+    console.log(err);
   }
 };
 
@@ -129,4 +148,6 @@ watch([mapX, mapY], () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import '@/assets/css/main.css';
+</style>
