@@ -6,6 +6,11 @@ nav {
   margin-left: 2rem;
   justify-content: space-evenly;
 }
+
+.alarms {
+  margin-left: 12.2rem;
+  margin-top: 1.4rem;
+}
 .wrapIcons {
   width: 4rem;
   height: 4rem;

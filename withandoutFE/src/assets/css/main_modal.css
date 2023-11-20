@@ -1,0 +1,17 @@
+.profile {
+    width: 3rem;
+  }
+
+.approval {
+    width: 2.5rem;
+    margin-right: 1rem;
+}
+
+.profileBox {
+  background-color: white;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  max-height: 32rem;
+}
