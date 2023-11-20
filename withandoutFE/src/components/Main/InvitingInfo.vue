@@ -7,7 +7,11 @@
         <InvitingParty
           :party="party"
           @click="
-            router.push({ name: 'detail', params: { partyNo: party.partyNo } })
+            router.push({
+              name: 'detail',
+              params: { partyNo: party.partyNo },
+              state: { data: { partyNo: party.partyNo, userNo: sessionId } },
+            })
           "
         />
       </section>

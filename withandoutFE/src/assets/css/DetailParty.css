@@ -1,0 +1,62 @@
+.detailPartyView {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.detailRow {
+  display: flex;
+  justify-content: space-evenly;
+}
+.rankComponent {
+  width: 35vw;
+  height: 40vh;
+  background-color: #fefefe;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
+}
+
+.galleryView {
+  display: flex;
+  width: 45vw;
+  height: 40vh;
+  background-color: #fefefe;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
+}
+
+.members {
+  display: flex;
+  flex-direction: column;
+  width: 45vw;
+  height: 40vh;
+}
+
+.memberH1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 1rem 1.5rem;
+}
+
+.memberSection {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.galleryView {
+  height: 45vh;
+}
+
+.memberImg {
+  width: 6vw;
+  margin: 0 1rem;
+}
+
+.nickname {
+  font-size: 1.2rem;
+  font-weight: 600;
+}

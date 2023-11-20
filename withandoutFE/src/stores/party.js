@@ -7,6 +7,7 @@ export const usePartyStore = defineStore('party', () => {
   const REST_API_PARTY = `http://localhost:8080/party`;
   const router = useRouter();
   const invitingMembers = ref({});
+  const applyEvents = ref({});
   const checkName = ref(false);
 
   // 아이디 중복체크
@@ -49,11 +50,29 @@ export const usePartyStore = defineStore('party', () => {
     return dataPromise;
   };
 
+  // 해당 파티의 전체 이벤트 조회하기
+  const selectAllEvents = (events) => {
+    axios({
+      url: `${REST_API_PARTY}/event`,
+      method: 'POST',
+      data: events,
+    })
+      .then((res) => {
+        applyEvents.value = res.data;
+        console.log(res.data);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
   return {
     checkName,
     invitingMembers,
+    applyEvents,
     dupPartyName,
     makeParty,
     selectMembers,
+    selectAllEvents,
   };
 });

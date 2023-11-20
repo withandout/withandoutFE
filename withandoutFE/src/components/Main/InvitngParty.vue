@@ -13,6 +13,7 @@
             class="memberImg"
             src="@/assets/img/default_user.png"
           />
+          <img v-else :src="`@/assets/upload/${member.imgPath}`" />
         </div>
       </section>
     </section>
@@ -35,7 +36,6 @@ onMounted(() => {
     // match 배열에서 두 번째 요소가 파일 이름
     if (match && match[1]) {
       const fileName = match[1].slice(6);
-      console.log('fileName: ' + fileName);
       partyImgSrc.value = `/src/assets/upload/${fileName}`;
     } else {
       console.log('파일 이름을 찾을 수 없습니다.');
@@ -53,7 +53,6 @@ onMounted(() => {
     console.log('해당 멤버를 찾을 수 없습니다.');
   }
 });
-console.log(props.party);
 </script>
 <style scoped>
 @import '@/assets/css/inviting.css';
