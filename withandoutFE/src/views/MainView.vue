@@ -21,13 +21,11 @@ import Calender from '../components/Main/Calender.vue';
 import InvitingInfo from '../components/Main/InvitingInfo.vue';
 import InvitationAlert from '../components/Main/InvitationAlert.vue';
 
-import {ref, watch} from 'vue';
+import { ref, watch } from 'vue';
 
 import { useUserStore } from '@/stores/user';
 import TownValidation from '../components/Main/TownValidation.vue';
 const store = useUserStore();
-
-
 </script>
 <style scoped>
 @import '@/assets/css/main.css';

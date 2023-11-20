@@ -108,13 +108,13 @@ export const useUserStore = defineStore('user', () => {
 
   // alert 켜기
   const alertToggle = () => {
-    alertOn.value = (! alertOn.value);
-    console.log(alertOn.value)
-  }
+    alertOn.value = !alertOn.value;
+    console.log(alertOn.value);
+  };
   // alert 끄기
   const getAlertOn = () => alertOn.value;
 
-  // 동네 인증 완료?
+  // 동네 인증 완료
   const isTownAuthorized = (userNo) => {
     axios({
       url: `${REST_API_USER}/auth/${userNo}`,
@@ -124,8 +124,7 @@ export const useUserStore = defineStore('user', () => {
         if (response.status === 200) {
           if (response.data == 1) {
             townAuthorized.value = true;
-          } 
-          else {
+          } else {
             townAuthorized.value = false;
           }
         }
@@ -134,26 +133,28 @@ export const useUserStore = defineStore('user', () => {
         console.log(e);
       });
   };
-  
-  const townAuthorize = (userNo) => {
+
+  const townAuthorize = (userNo, region) => {
     axios({
       url: `${REST_API_USER}/auth`,
       method: 'PUT',
       data: {
         userNo: userNo,
-        region: '강남구'
+        region: region,
       },
     })
       .then((response) => {
         if (response.status === 200) {
           // 수정이 잘 되었다면 반대로 Toggle
-          townAuthorized.value = (! townAuthorized);
+          townAuthorized.value = !townAuthorized;
           alert('동네 인증이 완료되었습니다!');
         }
       })
       .catch((e) => {
         console.log(e);
-        alert('인증이 완료되지 않았습니다. 등록했던 동네와 현재 위치를 확인해주세요!');
+        alert(
+          '인증이 완료되지 않았습니다. 등록했던 동네와 현재 위치를 확인해주세요!'
+        );
       });
   };
 

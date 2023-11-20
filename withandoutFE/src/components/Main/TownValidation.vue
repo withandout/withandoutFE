@@ -1,16 +1,18 @@
 <template>
-    <div>
-      <v-sheet
+  <div>
+    <v-sheet
       border="md"
       class="pa-6 text-black mx-auto"
       color="#FEFEFE"
       max-width="250"
-      >
+    >
       <h5 class="text-h5 font-weight-bold mb-3 text-center">동네 인증</h5>
 
       <h4 class="text-h6 font-weight-bold mb-1 text-center">현재 위치</h4>
 
-      <h4 class="text-h5 font-weight-black mb-3 text-center">강남구 역삼동</h4>
+      <h4 class="text-h5 font-weight-black mb-3 text-center">
+        {{ userLocation }}
+      </h4>
 
       <v-btn
         block
@@ -18,28 +20,77 @@
         color="blue"
         variant="flat"
         :disabled="townAuthorized"
-        @click="userStore.townAuthorize(userNo)"
+        @click="userStore.townAuthorize(userNo, userLocation)"
       >
-      <!-- 값 prop 받아와서 확인해주셈 -->
-      <h4 v-if="townAuthorized" class="text-h6 font-weight-bold mb-1 text-center">인증 완료</h4>
-      <h4 v-else>인증 하기</h4> 
+        <!-- 값 prop 받아와서 확인해주셈 -->
+        <h4
+          v-if="townAuthorized"
+          class="text-h6 font-weight-bold mb-1 text-center"
+        >
+          인증 완료
+        </h4>
+        <h4 v-else>인증 하기</h4>
       </v-btn>
-      </v-sheet>
-      </div>
-  </template>
-
+    </v-sheet>
+  </div>
+</template>
 <script setup>
-  import { useUserStore } from '@/stores/user';
-  import { ref } from 'vue';
-  
-  const userStore = useUserStore();
+import { useUserStore } from '@/stores/user';
+import { ref, onMounted } from 'vue';
 
-  const townAuthorized = userStore.townAuthorized;
+const userStore = useUserStore();
 
-  const userNo = JSON.parse(sessionStorage.getItem('sessionId')).userNo;
+const townAuthorized = userStore.townAuthorized;
+
+const userNo = JSON.parse(sessionStorage.getItem('sessionId')).userNo;
+const userLocation = ref('');
+
+const initMap = function () {
+  let myCenter = new kakao.maps.LatLng(33.450701, 126.570667); //카카오본사
+  const geocoder = new kakao.maps.services.Geocoder();
+  const searchDetailAddrFromCoords = (coords) => {
+    geocoder.coord2Address(
+      coords.getLng(),
+      coords.getLat(),
+      (result, status) => {
+        if (status === kakao.maps.services.Status.OK) {
+          if (result[0].road_address) {
+            console.log(result[0].road_address.address_name);
+          }
+          if (result[0].address) {
+            userLocation.value = result[0].address.address_name.slice(3, 6);
+          }
+        }
+      }
+    );
+  };
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      myCenter = new kakao.maps.LatLng(lat, lon);
+      searchDetailAddrFromCoords(myCenter);
+    });
+  }
+};
+
+onMounted(() => {
+  if (window.kakao && window.kakao.maps) {
+    initMap();
+  } else {
+    const script = document.createElement('script'); // autoload=false 스크립트를 동적으로 로드하기 위해서 사용
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
+      import.meta.env.VITE_KAKAO_API_KEY
+    }&libraries=services`;
+    script.addEventListener('load', () => {
+      kakao.maps.load(initMap);
+    }); //헤드태그에 추가
+    document.head.appendChild(script);
+  }
+});
 </script>
 
 <style scoped>
-    @import '@/assets/css/main_modal.css';
+@import '@/assets/css/main_modal.css';
 </style>
-
