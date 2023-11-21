@@ -20,10 +20,16 @@
 .galleryView {
   display: flex;
   width: 45vw;
-  height: 40vh;
+  height: 45vh;
   background-color: #fefefe;
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
+}
+
+.gallery {
+  height: 42vh;
+  overflow-y: scroll;
+  margin: 6px;
 }
 
 .members {
