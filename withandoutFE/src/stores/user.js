@@ -158,6 +158,20 @@ export const useUserStore = defineStore('user', () => {
       });
   };
 
+  // 유저 가입 파티 조회
+  const getAlertMsg = (userNo) => {
+    axios({
+      url: `${REST_API_USER}/myparty/${userNo}`,
+      method: 'GET',
+    })
+      .then((response) => {
+        partyList.value = response.data;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return {
     partyList,
     checkId,

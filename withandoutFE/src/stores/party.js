@@ -7,6 +7,7 @@ export const usePartyStore = defineStore('party', () => {
   const REST_API_PARTY = `http://localhost:8080/party`;
   const router = useRouter();
   const invitingMembers = ref({});
+  const applicants = ref({});
   const applyEvents = ref({});
   const checkName = ref(false);
 
@@ -66,6 +67,23 @@ export const usePartyStore = defineStore('party', () => {
       });
   };
 
+  const selectApplicatns = (userNo) =>{
+    axios({
+      url: `${REST_API_PARTY}/apply/${userNo}`,
+      method: 'GET',
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          applicants.value = res.data;
+          
+          console.log(res.data);
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
+
   return {
     checkName,
     invitingMembers,
@@ -74,5 +92,7 @@ export const usePartyStore = defineStore('party', () => {
     makeParty,
     selectMembers,
     selectAllEvents,
+    selectApplicatns,
+    applicants, 
   };
 });

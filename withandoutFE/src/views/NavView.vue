@@ -37,11 +37,13 @@
 import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user';
+import { usePartyStore } from '@/stores/party';
 import InvitationAlert from '../components/Main/InvitationAlert.vue';
 import TownValidation from '../components/Main/TownValidation.vue';
 
 const router = useRouter();
 const userStore = useUserStore();
+const partyStore = usePartyStore();
 const townValid = ref(false);
 
 const localAlertOn = ref(false);
@@ -60,8 +62,8 @@ const toggleTown = () => {
 onMounted(() => {
   const userNo = JSON.parse(sessionStorage.getItem('sessionId')).userNo;
   userStore.isTownAuthorized(userNo);
-  console.log("userNo: " + userNo);
-  console.log("townAuthed: " + userStore.townAuthorized);
+  
+  partyStore.selectApplicatns(userNo);
 })
 
 </script>
