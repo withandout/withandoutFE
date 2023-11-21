@@ -11,6 +11,7 @@ export const usePartyStore = defineStore('party', () => {
   const invitingMembers = ref({});
   const applicants = ref({});
   const applyEvents = ref({});
+  const partyArticles = ref({});
   const checkName = ref(false);
 
   // 아이디 중복체크
@@ -215,6 +216,24 @@ export const usePartyStore = defineStore('party', () => {
     })
   }
 
+  // 파티 아티클 반환
+  const getPartyArticles =(partyNo) => {
+    axios({
+      url: `${REST_API_PARTY}/article/${partyNo}`,
+      method: 'GET',
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        partyArticles.value = response.data;
+      }
+      // console.log(partyArticles);
+    })
+    .catch((e)=> {
+      console.log("못 가져왔어요.")
+      console.log(e);
+    })
+  }
+
   return {
     checkName,
     invitingMembers,
@@ -232,6 +251,8 @@ export const usePartyStore = defineStore('party', () => {
     declineApply,
     makeEvent,
     applyEvent,
-    cancelEvent, 
+    cancelEvent,
+    partyArticles,
+    getPartyArticles
   };
 });

@@ -8,12 +8,12 @@
       </section>
       <section class="partyContent">
         <div v-for="member in memberImgSrc">
-          <img
+          <!-- <img
             v-if="member.imgPath === ''"
             class="memberImg"
             src="@/assets/img/default_user.png"
-          />
-          <img v-else :src="`${member.imgPath}`" style= "width: 4rem; height: 4rem; border-radius: 50%; margin-left: 1rem;" />
+          /> -->
+          <img :src="`${member.imgPath}`" style= "width: 4rem; height: 4rem; border-radius: 50%; margin-left: 1rem;" />
         </div>
       </section>
     </section>
