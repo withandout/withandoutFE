@@ -19,6 +19,19 @@
   margin-bottom: 1rem;
 }
 
+.noEvents {
+  width: 47vw;
+  height: 40vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('@/assets/img/noEvents.jpeg');
+  text-align: center;
+  line-height: 28vh;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 .infos {
   display: flex;
   height: 100%;

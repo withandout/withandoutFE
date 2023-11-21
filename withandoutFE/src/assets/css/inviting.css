@@ -6,6 +6,12 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.noParty {
+  text-align: left;
+  font-size: 1.3rem;
+  margin-left: 2rem;
+}
 .makeParty,
 .joinParty {
   margin-right: 2rem;

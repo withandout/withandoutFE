@@ -58,13 +58,15 @@ button,
   border: none;
   margin-left: 1rem;
   font-size: 1rem;
+}
+.complete {
   background-color: transparent;
 }
 
 .imageArea {
   position: absolute;
-  top: 17rem;
-  left: 70rem;
+  top: 35%;
+  left: 80%;
 }
 
 .htmlImage {

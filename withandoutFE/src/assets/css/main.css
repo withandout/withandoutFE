@@ -118,3 +118,21 @@ main {
   margin-left: 2rem;
   margin-bottom: 2rem;
 }
+
+.nameCard {
+  display: flex;
+}
+
+.halfSize {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cardImage {
+  width: 8vw;
+}
+
+.cardName {
+  margin-top: 1rem;
+}

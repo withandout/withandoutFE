@@ -3,17 +3,22 @@
     <h1 class="invitedText">참여 중인 파티 정보</h1>
     <!-- axios로 data 가져와서 v-for로 보여줄 것 -->
     <section class="wrapParties">
-      <section class="parties" v-for="party in store.partyList">
-        <InvitingParty
-          :party="party"
-          @click="
-            router.push({
-              name: 'detail',
-              params: { partyNo: party.partyNo },
-              state: { data: { partyNo: party.partyNo, userNo: sessionId } },
-            })
-          "
-        />
+      <section v-if="store.partyList.length === 0">
+        <div class="noParty">현재 참여중인 파티 정보가 없습니다.</div>
+      </section>
+      <section v-else>
+        <section class="parties" v-for="party in store.partyList">
+          <InvitingParty
+            :party="party"
+            @click="
+              router.push({
+                name: 'detail',
+                params: { partyNo: party.partyNo },
+                state: { data: { partyNo: party.partyNo, userNo: sessionId } },
+              })
+            "
+          />
+        </section>
       </section>
     </section>
     <section class="invitingBtns">

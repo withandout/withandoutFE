@@ -58,6 +58,9 @@ button,
   border: none;
   margin-left: 1rem;
   font-size: 1rem;
+}
+
+.complete {
   background-color: transparent;
 }
 
@@ -72,8 +75,8 @@ textarea {
 
 .imageArea {
   position: absolute;
-  top: 13.5rem;
-  left: 37rem;
+  top: 28%;
+  left: 40%;
 }
 
 .htmlImage {

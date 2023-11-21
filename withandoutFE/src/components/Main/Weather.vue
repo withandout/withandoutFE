@@ -49,6 +49,9 @@ if (hours % 3 === 1) {
 hours = hours < 10 ? '0' + hours + '00' : hours + '00';
 console.log(hours);
 const todayStr = `${year}${month}${day}`;
+const encodedServiceKey = encodeURIComponent(
+  import.meta.env.VITE_WEATHER_API_KEY
+);
 
 // 날씨 API 가져오는 함수
 const getWeatherAPI = async () => {
@@ -56,7 +59,7 @@ const getWeatherAPI = async () => {
     await axios
       .get(API_URL, {
         params: {
-          ServiceKey: import.meta.env.VITE_WEATHER_API_KEY,
+          ServiceKey: encodedServiceKey,
           dataType: 'JSON',
           base_date: todayStr, //20231105 형태
           base_time: hours, //이것은 총 8회 발표
@@ -66,7 +69,7 @@ const getWeatherAPI = async () => {
         },
       })
       .then((response) => {
-        console.log(response.data.response);
+        console.log(response.data);
         return response.data.response.body.items.item;
       })
       .then((response) => {
