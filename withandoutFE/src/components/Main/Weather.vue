@@ -37,8 +37,6 @@ let day = today.getDate();
 let hours = today.getHours();
 month = month < 10 ? '0' + month : month;
 day = day < 10 ? '0' + day : day;
-//hours = hours < 10 ? '0' + hours + '00' : hours + '00';
-const time = ['0200', '0500', '0800', '1100', '1400', '1700', '2000', '2300'];
 if (hours % 3 === 1) {
   hours = hours - 2;
   if (hours < 0) hours = 23;
@@ -49,7 +47,7 @@ if (hours % 3 === 1) {
 hours = hours < 10 ? '0' + hours + '00' : hours + '00';
 console.log(hours);
 const todayStr = `${year}${month}${day}`;
-const encodedServiceKey = encodeURIComponent(
+const decodedServiceKey = decodeURIComponent(
   import.meta.env.VITE_WEATHER_API_KEY
 );
 
@@ -59,7 +57,7 @@ const getWeatherAPI = async () => {
     await axios
       .get(API_URL, {
         params: {
-          ServiceKey: encodedServiceKey,
+          ServiceKey: decodedServiceKey,
           dataType: 'JSON',
           base_date: todayStr, //20231105 형태
           base_time: hours, //이것은 총 8회 발표

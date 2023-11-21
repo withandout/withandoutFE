@@ -2,7 +2,7 @@
   <section class="signup">
     <img class="poster" src="@/assets/img/signup.jpg" alt="poster" />
     <form>
-      <h2>Signup</h2>
+      <h2>Sign Up</h2>
       <section class="inputArea">
         <label for="id">아이디</label>
         <div>

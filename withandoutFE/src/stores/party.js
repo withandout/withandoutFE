@@ -6,6 +6,7 @@ import { acceptHMRUpdate, defineStore } from 'pinia';
 export const usePartyStore = defineStore('party', () => {
   const REST_API_PARTY = `http://localhost:8080/party`;
   const router = useRouter();
+  const partyList = ref({});
   const invitingMembers = ref({});
   const applicants = ref({});
   const applyEvents = ref({});
@@ -51,6 +52,16 @@ export const usePartyStore = defineStore('party', () => {
     return dataPromise;
   };
 
+  // 정원이 있는 파티 조회
+  const selectAvailableParty = () => {
+    axios({
+      url: `${REST_API_PARTY}/info/available`,
+      method: 'GET',
+    }).then((res) => {
+      partyList.value = res.data;
+    });
+  };
+
   // 해당 파티의 전체 이벤트 조회하기
   const selectAllEvents = (events) => {
     axios({
@@ -67,7 +78,8 @@ export const usePartyStore = defineStore('party', () => {
       });
   };
 
-  const selectApplicatns = (userNo) =>{
+  // 파티 신청자 조회
+  const selectApplicatns = (userNo) => {
     axios({
       url: `${REST_API_PARTY}/apply/${userNo}`,
       method: 'GET',
@@ -75,24 +87,25 @@ export const usePartyStore = defineStore('party', () => {
       .then((res) => {
         if (res.status === 200) {
           applicants.value = res.data;
-          
           console.log(res.data);
         }
       })
       .catch((e) => {
         console.error(e);
       });
-  }
+  };
 
   return {
     checkName,
     invitingMembers,
     applyEvents,
+    applicants,
+    partyList,
     dupPartyName,
     makeParty,
     selectMembers,
     selectAllEvents,
     selectApplicatns,
-    applicants, 
+    selectAvailableParty,
   };
 });
