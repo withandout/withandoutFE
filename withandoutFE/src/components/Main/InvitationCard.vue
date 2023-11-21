@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div v-show="showCard">
         <v-card
       class="mx-auto"
       max-width="350"
@@ -11,21 +12,38 @@
             <img class="profile" :src="props.applicant['imgPath']" style="border-radius: 50%; width: 3rem; height: 3rem;"/>
         </template>
         <template v-slot:append>
-            <img class="approval yes" src="@/assets/img/yes.png"/>
-            <img class="approval" src="@/assets/img/remove.png"/>    
+                    <img @click="partyStore.acceptApply(userNo, partyNo)" class="approval yes" src="@/assets/img/yes.png"/>
+                    <img @click="partyStore.declineApply(userNo, partyNo)" class="approval" src="@/assets/img/remove.png"/>    
         </template>
         <v-card-text
             > {{props.applicant["content"]}} </v-card-text
         >
         </v-card>
     </div>
+    </div>
   </template>
 
 <script setup>
+import { ref } from 'vue';
+import { usePartyStore } from '../../stores/party';
+
+const partyStore = usePartyStore();
+const showCard = ref(true);
 
 const props = defineProps({
-    applicant: Object,
+    applicant: Object,  
 })
+
+const acceptApply = (userNo, partyNo) => {
+    partyStore.acceptApply(userNo, partyNo);
+} 
+
+const declineApply = (userNo, partyNo) => {
+    partyStore.declineApply(userNo, partyNo);
+} 
+
+const userNo = props.applicant['userNo'];
+const partyNo = props.applicant['partyNo'];
 </script>
 
 <style scoped>

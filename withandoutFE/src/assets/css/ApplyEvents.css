@@ -3,10 +3,15 @@
   height: 45vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  background-color: #fefefe;
+  border-radius: 10px;
 }
+
 .wrapEvents {
-  height: 40vh;
+  height: 43vh;
+  overflow-y: scroll;
 }
 
 .eachEvents {
@@ -38,6 +43,7 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
 .verticalBar {
   width: 1vw;
   height: 13vh;
@@ -49,7 +55,7 @@
   display: inline-block;
   font-size: 1.5rem;
   font-weight: 600;
-  width: 13vw;
+  width: 9vw;
 }
 
 .info {
@@ -58,10 +64,23 @@
   font-weight: 500;
 }
 
-.eventsBtn {
+.eventsApplyBtn {
   width: 4rem;
   height: 2.5rem;
   font-weight: 600;
   background-color: var(--btn-color);
   margin-left: 4rem;
+}
+
+.eventsCancelBtn {
+  width: 4rem;
+  height: 2.5rem;
+  font-weight: 600;
+  background-color: var(--btn-cancel-color);
+  margin-left: 4rem;
+}
+
+.upperLine {
+  display: flex;
+  justify-content: space-between;
 }
