@@ -98,152 +98,211 @@ export const usePartyStore = defineStore('party', () => {
       .catch((e) => {
         console.error(e);
       });
-  }
+  };
 
-  const acceptApply =(userNo, partyNo) => {
+  const acceptApply = (userNo, partyNo) => {
     axios({
       url: `${REST_API_PARTY}/apply`,
       method: 'PUT',
       data: {
         userNo: userNo,
         partyNo: partyNo,
-      }
-    })
-    .then((response) => {
+      },
+    }).then((response) => {
       if (response.status === 200) {
-        console.log("신청 수락 완료.")
-        applicants.value = applicants.value.filter((applicant)=>{
-          return (applicant.userNo != userNo || applicant.partyNo != partyNo)
-        })
+        console.log('신청 수락 완료.');
+        applicants.value = applicants.value.filter((applicant) => {
+          return applicant.userNo != userNo || applicant.partyNo != partyNo;
+        });
       }
-    })
-  }
+    });
+  };
 
-  const declineApply =(userNo, partyNo) => {
+  const declineApply = (userNo, partyNo) => {
     axios({
       url: `${REST_API_PARTY}/apply`,
       method: 'DELETE',
       data: {
         userNo: userNo,
         partyNo: partyNo,
-      }
-    })
-    .then((response) => {
+      },
+    }).then((response) => {
       if (response.status === 200) {
-        console.log("신청 거절 완료.")
+        console.log('신청 거절 완료.');
         applicants.value = applicants.value.filter((applicant) => {
-          return (applicant.userNo != userNo || applicant.partyNo != partyNo)
-        })
+          return applicant.userNo != userNo || applicant.partyNo != partyNo;
+        });
       }
-    })
-  }
+    });
+  };
 
   //  일정 생성. 시작 시간, 종료 시간, 컨텐트, 파티 넘버.
-  const makeEvent =(userNo, eventNo) => {
+  const makeEvent = (userNo, eventNo) => {
     axios({
       url: `${REST_API_EVENT}/new`,
       method: 'POST',
       data: {
         userNo: userNo,
         eventNo: eventNo,
-      }
+      },
     })
-    .then((response) => {
-      if (response.status === 200) {
-        console.log("스무스하게 생성 완료.")
-      }
-    })
-    .catch((e)=> {
-      console.log("신청에서 에러 발견")
-      console.log(e);
-    })
-  }
+      .then((response) => {
+        if (response.status === 200) {
+          console.log('스무스하게 생성 완료.');
+        }
+      })
+      .catch((e) => {
+        console.log('신청에서 에러 발견');
+        console.log(e);
+      });
+  };
 
   //  일정 참여 신청.
-  const applyEvent =(userNo, eventNo) => {
+  const applyEvent = (userNo, eventNo) => {
     axios({
       url: `${REST_API_EVENT}/join`,
       method: 'POST',
       data: {
         userNo: userNo,
         eventNo: eventNo,
-      }
+      },
     })
-    .then((response) => {
-      if (response.status === 200) {
-        alert("스무스하게 참여 신청 완료!")
-        applyEvents.value = applyEvents.value.map((event) => {
-          console.log(event)
-          if (event.eventNo == eventNo) {
-            userStore.userEvents.push(reactive ({
-              'eventNo':event.eventNo,
-              'description': event.content,
-              'isCompleted': event.isApplied === 0,
-              'dates': (new Date(event.sttTime - 9*60*60*1000)),
-              // 색 추가 하나 하면 좋겠다. 
-            }));
+      .then((response) => {
+        if (response.status === 200) {
+          alert('스무스하게 참여 신청 완료!');
+          applyEvents.value = applyEvents.value.map((event) => {
+            console.log(event);
+            if (event.eventNo == eventNo) {
+              userStore.userEvents.push(
+                reactive({
+                  eventNo: event.eventNo,
+                  description: event.content,
+                  isCompleted: event.isApplied === 0,
+                  dates: new Date(event.sttTime - 9 * 60 * 60 * 1000),
+                  // 색 추가 하나 하면 좋겠다.
+                })
+              );
 
-            return reactive({...event, eventNo: event.eventNo ,isApplied: 1, noParticipant: event.noParticipant + 1});
-          }
-          return event;
-        })
+              return reactive({
+                ...event,
+                eventNo: event.eventNo,
+                isApplied: 1,
+                noParticipant: event.noParticipant + 1,
+              });
+            }
+            return event;
+          });
 
-        console.log(applyEvents.value)
-      }
-    })
-    .catch((e)=> {
-      console.log("신청에서 에러 발견")
-      console.log(e);
-    })
-  }
+          console.log(applyEvents.value);
+        }
+      })
+      .catch((e) => {
+        console.log('신청에서 에러 발견');
+        console.log(e);
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log('스무스하게 참여 신청 완료.');
+          applyEvents.value = applyEvents.value.map((event) => {
+            console.log(event);
+            if (event.eventNo == eventNo) {
+              return {
+                ...event,
+                eventNo: event.eventNo,
+                isApplied: 1,
+                noParticipant: event.noParticipant + 1,
+              };
+            }
+            return event;
+          });
+
+          console.log(applyEvents.value);
+          alert('스무스하게 참여 신청 완료!');
+        }
+      })
+      .catch((e) => {
+        console.log('신청에서 에러 발견');
+        console.log(e);
+      });
+  };
 
   // 이벤트 참여 취소
-  const cancelEvent =(userNo, eventNo) => {
+  const cancelEvent = (userNo, eventNo) => {
     axios({
       url: `${REST_API_EVENT}/cancel`,
       method: 'DELETE',
       data: {
         userNo: userNo,
         eventNo: eventNo,
-      }
+      },
     })
-    .then((response) => {
-      if (response.status === 200) {
-        alert("스무스하게 참여 취소 완료!");
-        applyEvents.value = applyEvents.value.map((event) => {
-          if (event.eventNo == eventNo) {
-            return reactive({...event, eventNo: event.eventNo, isApplied: 0, noParticipant: event.noParticipant-1});
-          }
-          return event;
-        })
-        // console.log(userStore.userEvents);
-        
-        userStore.userEvents = userStore.userEvents.filter((event) => event.eventNo !== eventNo);
-      }
-    })
-    .catch((e)=> {
-      console.log("취소에서 에러 발견")
-      console.log(e);
-    })
-  }
-  
+      .then((response) => {
+        if (response.status === 200) {
+          alert('스무스하게 참여 취소 완료!');
+          applyEvents.value = applyEvents.value.map((event) => {
+            if (event.eventNo == eventNo) {
+              return reactive({
+                ...event,
+                eventNo: event.eventNo,
+                isApplied: 0,
+                noParticipant: event.noParticipant - 1,
+              });
+            }
+            return event;
+          });
+          // console.log(userStore.userEvents);
+
+          userStore.userEvents = userStore.userEvents.filter(
+            (event) => event.eventNo !== eventNo
+          );
+        }
+      })
+      .catch((e) => {
+        console.log('취소에서 에러 발견');
+        console.log(e);
+      });
+  };
+
   // 파티 아티클 반환
-  const getPartyArticles =(partyNo) => {
+  const getPartyArticles = (partyNo) => {
     axios({
       url: `${REST_API_PARTY}/article/${partyNo}`,
       method: 'GET',
     })
-    .then((response) => {
-      if (response.status === 200) {
-        partyArticles.value = response.data;
-      }
-      // console.log(partyArticles);
+      .then((response) => {
+        if (response.status === 200) {
+          partyArticles.value = response.data;
+        }
+        // console.log(partyArticles);
+      })
+      .catch((e) => {
+        console.log('못 가져왔어요.');
+        console.log(e);
+      });
+  };
+
+  // 파티 신청하기
+  const applyToParty = (partyNo, userNo, invitedDate, content) => {
+    axios({
+      url: `${REST_API_PARTY}/apply`,
+      method: 'POST',
+      data: {
+        partyNo: partyNo,
+        userNo: userNo,
+        invitedDate: invitedDate,
+        content: content,
+      },
     })
-    .catch((e)=> {
-      console.log("못 가져왔어요.")
-      console.log(e);
-    })
-  }
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(content);
+          alert('잘됨' + content);
+        }
+      })
+      .catch((e) => {
+        alert('안됨');
+      });
+  };
 
   return {
     checkName,
@@ -257,13 +316,14 @@ export const usePartyStore = defineStore('party', () => {
     selectAllEvents,
     selectApplicatns,
     selectAvailableParty,
-    applicants, 
-    acceptApply, 
+    applicants,
+    acceptApply,
     declineApply,
     makeEvent,
     applyEvent,
     cancelEvent,
     partyArticles,
     getPartyArticles,
+    applyToParty,
   };
 });

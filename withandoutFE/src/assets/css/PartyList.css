@@ -1,9 +1,16 @@
 .partyList {
+  position: relative;
   height: 100vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  z-index: 1;
 }
+
+.disable {
+  opacity: 80%;
+}
+
 .parties,
 .partyInfo {
   width: 45vw;
@@ -117,4 +124,65 @@
 .clickedContent {
   font-size: 1.6rem;
   margin-left: 3vw;
+}
+
+.invitation {
+  z-index: 100;
+  position: absolute;
+  width: 30vw;
+  height: 40vh;
+  background-color: rgb(190, 196, 210);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inviInfo {
+  text-align: center;
+}
+
+.inviInfo h3 {
+  margin-top: 3vh;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 3vh;
+}
+
+.inviSec {
+  text-align: left;
+  font-size: 1.2rem;
+  margin-top: 2vh;
+  margin-left: 2.5vw;
+}
+
+.inviSec > span {
+  margin-left: 1vw;
+}
+
+.inviMargin {
+  font-weight: 600;
+}
+
+.inviContent {
+  width: 80%;
+  height: 8vh;
+  margin: 2vh 0;
+  background-color: #fefefe;
+  border-radius: 5px;
+}
+
+.applyBtn {
+  margin-top: 1vh;
+  width: 7vw;
+  height: 4vh;
+  background-color: var(--btn-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.outBtn {
+  background-color: var(--btn-cancel-color);
 }
