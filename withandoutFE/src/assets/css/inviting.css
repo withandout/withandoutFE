@@ -70,13 +70,16 @@
 }
 
 .partyName {
-  font-size: 2rem;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
 .partySports {
   align-self: center;
   font-size: 1rem;
+  margin-top: 0.5rem;
   font-weight: 600;
   margin-left: 1rem;
 }

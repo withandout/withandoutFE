@@ -13,7 +13,15 @@
             class="memberImg"
             src="@/assets/img/default_user.png"
           /> -->
-          <img :src="`${member.imgPath}`" style= "width: 4rem; height: 4rem; border-radius: 50%; margin-left: 1rem;" />
+          <img
+            :src="`${member.imgPath}`"
+            style="
+              width: 3.5rem;
+              height: 3.5rem;
+              border-radius: 50%;
+              margin-left: 1rem;
+            "
+          />
         </div>
       </section>
     </section>
