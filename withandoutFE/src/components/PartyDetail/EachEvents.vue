@@ -46,11 +46,11 @@ const minutes = startDate.toString().slice(19, 21);
 const userNo = JSON.parse(sessionStorage.getItem('sessionId')).userNo;
 
 const applyEvent = (eventNo) => {
-  partyStore.applyEvent(userNo, eventNo)
+  partyStore.applyEvent(userNo, eventNo);
 }
 
 const cancelEvent = (eventNo) => {
-  partyStore.cancelEvent(userNo, eventNo)
+  partyStore.cancelEvent(userNo, eventNo);
 }
 
 const changedStart = ref(
@@ -58,7 +58,7 @@ const changedStart = ref(
     startDate.getMonth() + 1
   }월 ${startDate.getDate()}일 ${hours}시 ${minutes}분`
 );
-const endTime = props.event.endTime - 9*60*60*1000;;
+const endTime = props.event.endTime - 9*60*60*1000;
 // JavaScript Date 객체 생성
 const endDate = new Date(endTime);
 const endHours = endDate.toString().slice(16, 18);

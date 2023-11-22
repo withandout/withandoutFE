@@ -3,7 +3,7 @@
     <h1 class="memberH1">MEMBERS</h1>
     <section class="memberSection">
       <div v-for="member in members">
-        <img :src="`/${member.imgPath}`" style="width: 6rem; height: 6rem; border-radius: 50%; margin: 1rem;" />
+        <img :src="`${member.imgPath}`" style="width: 6rem; height: 6rem; border-radius: 50%; margin: 1rem;" />
         <div class="nickname">
           {{ member.nickname }}
         </div>

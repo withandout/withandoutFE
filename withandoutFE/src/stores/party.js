@@ -1,16 +1,20 @@
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 import { acceptHMRUpdate, defineStore } from 'pinia';
+import { useUserStore } from './user';
+const userStore = useUserStore();
 
 export const usePartyStore = defineStore('party', () => {
   const REST_API_PARTY = `http://localhost:8080/party`;
   const REST_API_EVENT = `http://localhost:8080/event`;
+  const REST_API_USER = `http://localhost:8080/user`;
   const router = useRouter();
   const partyList = ref({});
   const invitingMembers = ref({});
   const applicants = ref({});
   const applyEvents = ref({});
+  const partyArticles = ref({});
   const checkName = ref(false);
 
   // 아이디 중복체크
@@ -167,17 +171,24 @@ export const usePartyStore = defineStore('party', () => {
     })
     .then((response) => {
       if (response.status === 200) {
-        console.log("스무스하게 참여 신청 완료.")
+        alert("스무스하게 참여 신청 완료!")
         applyEvents.value = applyEvents.value.map((event) => {
           console.log(event)
           if (event.eventNo == eventNo) {
-            return {...event, eventNo: event.eventNo ,isApplied: 1, noParticipant: event.noParticipant + 1};
+            userStore.userEvents.push(reactive ({
+              'eventNo':event.eventNo,
+              'description': event.content,
+              'isCompleted': event.isApplied === 0,
+              'dates': (new Date(event.sttTime - 9*60*60*1000)),
+              // 색 추가 하나 하면 좋겠다. 
+            }));
+
+            return reactive({...event, eventNo: event.eventNo ,isApplied: 1, noParticipant: event.noParticipant + 1});
           }
           return event;
         })
 
         console.log(applyEvents.value)
-        alert("스무스하게 참여 신청 완료!")
       }
     })
     .catch((e)=> {
@@ -198,19 +209,38 @@ export const usePartyStore = defineStore('party', () => {
     })
     .then((response) => {
       if (response.status === 200) {
-        console.log("스무스하게 참여 취소 완료")
+        alert("스무스하게 참여 취소 완료!");
         applyEvents.value = applyEvents.value.map((event) => {
           if (event.eventNo == eventNo) {
-            return {...event, eventNo: event.eventNo, isApplied: 0, noParticipant: event.noParticipant-1};
+            return reactive({...event, eventNo: event.eventNo, isApplied: 0, noParticipant: event.noParticipant-1});
           }
           return event;
         })
-
-        alert("스무스하게 참여 취소 완료!")
+        // console.log(userStore.userEvents);
+        
+        userStore.userEvents = userStore.userEvents.filter((event) => event.eventNo !== eventNo);
       }
     })
     .catch((e)=> {
       console.log("취소에서 에러 발견")
+      console.log(e);
+    })
+  }
+  
+  // 파티 아티클 반환
+  const getPartyArticles =(partyNo) => {
+    axios({
+      url: `${REST_API_PARTY}/article/${partyNo}`,
+      method: 'GET',
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        partyArticles.value = response.data;
+      }
+      // console.log(partyArticles);
+    })
+    .catch((e)=> {
+      console.log("못 가져왔어요.")
       console.log(e);
     })
   }
@@ -232,6 +262,8 @@ export const usePartyStore = defineStore('party', () => {
     declineApply,
     makeEvent,
     applyEvent,
-    cancelEvent, 
+    cancelEvent,
+    partyArticles,
+    getPartyArticles,
   };
 });

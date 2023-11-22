@@ -2,14 +2,14 @@
   <section class="galleryView">
     <v-row class="gallery">
     <v-col
-      v-for="n in 20"
-      :key="n"
+      v-for="article in partyStore.partyArticles"
+      :key="article.articleNo"
       class="d-flex child-flex"
-      cols="2"
+      cols="4"
     >
       <v-img
-        :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-        :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+        :src="`${article.imgPath}`"
+        :lazy-src="`${article.imgPath}`"
         aspect-ratio="1"
         cover
         class="bg-grey-lighten-2"
@@ -31,7 +31,28 @@
   </v-row>
   </section>
 </template>
-<script setup></script>
+<script setup>
+
+import { ref, onMounted } from 'vue';
+import { usePartyStore } from '@/stores/party';
+import { useRoute } from 'vue-router';
+
+const partyStore = usePartyStore();
+const route = useRoute();
+
+const partyNo = ref(route.params.partyNo);
+
+console.log(partyNo.value);
+
+const articles = ref({});
+
+onMounted(() => {
+  partyStore.getPartyArticles(partyNo.value);
+
+  articles.value = partyStore.partyArticles;
+})
+
+</script>
 <style scoped>
 @import '@/assets/css/DetailParty.css';
 </style>
