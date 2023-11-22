@@ -10,6 +10,11 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+// V-calender
+import VCalendar from 'v-calendar';
+import 'v-calendar/style.css';
+import {Calendar, } from 'v-calendar'
+
 library.add(fas);
 
 import App from './App.vue';
@@ -25,5 +30,6 @@ app.use(createPinia());
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(router);
 app.use(vuetify);
+app.use(VCalendar, {})
 
 app.mount('#app');

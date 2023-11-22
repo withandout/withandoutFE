@@ -17,6 +17,7 @@ import Rank from '@/components/PartyDetail/Rank.vue';
 import ApplyEvents from '@/components/PartyDetail/ApplyEvents.vue';
 import PartyMembers from '@/components/PartyDetail/PartyMembers.vue';
 import Gallery from '@/components/PartyDetail/Gallery.vue';
+
 </script>
 <style scoped>
 @import '@/assets/css/DetailParty.css';

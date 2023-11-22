@@ -1,7 +1,37 @@
 <template>
-  <section class="calenderView"></section>
+  <section class="calenderView">
+    <VCalendar
+    expanded
+    title-position="left"
+    :attributes="attributes" />
+  </section>
 </template>
-<script setup></script>
+<script setup>
+import { ref, computed, onMounted  } from 'vue';
+import { useUserStore } from '@/stores/user';
+
+const userStore = useUserStore();
+const userNo = JSON.parse(sessionStorage.getItem('sessionId')).userNo;
+
+const attributes = computed(() => [
+  ...userStore.userEvents.map(todo => ({
+    dates: todo.dates,
+    dot: {
+      color: todo.color,
+      ...(todo.isComplete && { class: 'opacity-75' }),
+    },
+    popover: {
+      label: todo.description,
+    },
+  })),
+]);
+
+onMounted(() => {
+  userStore.getAllEvents(userNo);
+})
+
+</script>
 <style scoped>
 @import '@/assets/css/main.css';
+@import 'v-calendar/style.css';
 </style>

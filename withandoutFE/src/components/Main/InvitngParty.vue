@@ -31,18 +31,17 @@ const props = defineProps({
 
 onMounted(() => {
   if (props.party.imgPath) {
-    console.log(props.party.imgName);
     const fileNameRegex = /\/([^\/]+)$/; // 마지막 슬래시 뒤의 문자열을 가져옴
     const match = props.party.imgPath.match(fileNameRegex);
     // match 배열에서 두 번째 요소가 파일 이름
     if (match && match[1]) {
       const fileName = match[1].slice(6);
-      partyImgSrc.value = `/src/assets/upload/${fileName}`;
+      partyImgSrc.value = `${props.party.imgPath}`;
     } else {
       console.log('파일 이름을 찾을 수 없습니다.');
     }
   } else {
-    partyImgSrc.value = '/src/assets/img/default_party.png';
+    partyImgSrc.value = '/src/assets/upload/defaultParty.png';
   }
 
   if (props.party.partyNo) {
