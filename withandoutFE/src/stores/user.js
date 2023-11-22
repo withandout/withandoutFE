@@ -30,6 +30,10 @@ export const useUserStore = defineStore('user', () => {
       } else {
         alert('정보를 다시 확인해주세요.');
       }
+    })
+    .catch((e) => {
+      console.log(e);
+      alert("로그인에 실패했습니다. 아이디와 패스워드를 확인해주세요.");
     });
   };
 
@@ -90,6 +94,9 @@ export const useUserStore = defineStore('user', () => {
       if (response.status === 200) {
         checkNickname.value = true;
       }
+    })
+    .catch((e) => {
+      console.log(e);
     });
   };
 

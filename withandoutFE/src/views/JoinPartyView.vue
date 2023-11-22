@@ -4,18 +4,18 @@
       <section v-for="(party, index) in store.partyList">
         <Party
           :party="party"
-          :identify="clickList[index]"
           @click="selectedParty(index)"
-        />
+          />
+          <!-- :identify="clickList[index]" -->
       </section>
     </section>
     <section class="partyInfo">
       <!-- 이거 에러처리 해줘야 할 듯 => 아무것도 없을 때 -->
-      <PartyInfo
-        v-if="store.partyList.length >= 0"
+      <!-- <PartyInfo
+        v-if="store.partyList.length > 0"
         :clicked-party="store.partyList[clickedPartyNum]"
         :key="clickedPartyNum"
-      />
+      /> -->
       <!-- 리더 네임카드 -->
       <button @click.prevent="isApplied = true">신청하기</button>
       <button @click.prevent="() => router.push({ name: 'home' })">
@@ -49,7 +49,7 @@
           <button
             class="applyBtn"
             @click.prevent="
-              store.applyToParty(
+              applyToParty(
                 store.partyList[clickedPartyNum].partyNo,
                 userInfo.userNo,
                 Date.now(),
@@ -77,18 +77,31 @@ import { useRouter } from 'vue-router';
 const introduce = ref('');
 const store = usePartyStore();
 const router = useRouter();
-const clickList = ref(
+const clickList = ref([]);
+
+// clickListReset, clickedPartyNo 초기화.
+const clickListReset = () => {
+  clickList.value = 
   Array.from({ length: store.partyList.length }, (v, i) => {
     if (i === 0) return true;
     else return false;
-  })
-);
+  });
+  clickedPartyNum.value = 0;
+}
+ 
 const clickedPartyNum = ref(0);
 const userInfo = ref(JSON.parse(sessionStorage.getItem('sessionId')));
 const isApplied = ref(false);
+const applyToParty = (partyNo, userNo, Date, introduce) => {
+  store.applyToParty(partyNo, userNo, Date, introduce);
+  clickListReset();
+}
+
 
 onMounted(() => {
-  store.selectAvailableParty();
+  store.selectAvailableParty(userInfo.value.userNo, userInfo.value.region);
+  // 토글 초기화
+  clickListReset();
 });
 
 const selectedParty = (index) => {

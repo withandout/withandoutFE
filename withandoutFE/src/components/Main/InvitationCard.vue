@@ -30,7 +30,10 @@
             src="@/assets/img/remove.png"
           />
         </template>
-        <v-card-text> {{ props.applicant['content'] }} </v-card-text>
+        <v-card-text style="padding: 0px; padding: 0 1rem;"> {{ props.applicant['content'] }} </v-card-text>
+        <v-card-actions class="d-flex flex-row-reverse" style="min-height: 0px; padding: 0px;">
+          <v-btn disabled=""> to {{ props.applicant['partyName'] }}</v-btn>
+      </v-card-actions>
       </v-card>
     </div>
   </div>
