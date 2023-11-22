@@ -2,11 +2,8 @@
   <section class="partyList" :class="{ disable: isApplied }">
     <section class="parties">
       <section v-for="(party, index) in store.partyList">
-        <Party
-          :party="party"
-          @click="selectedParty(index)"
-          />
-          <!-- :identify="clickList[index]" -->
+        <Party :party="party" @click="selectedParty(index)" />
+        <!-- :identify="clickList[index]" -->
       </section>
     </section>
     <section class="partyInfo">
@@ -81,22 +78,21 @@ const clickList = ref([]);
 
 // clickListReset, clickedPartyNo 초기화.
 const clickListReset = () => {
-  clickList.value = 
-  Array.from({ length: store.partyList.length }, (v, i) => {
+  clickList.value = Array.from({ length: store.partyList.length }, (v, i) => {
     if (i === 0) return true;
     else return false;
   });
   clickedPartyNum.value = 0;
-}
- 
+  introduce.value = '';
+};
+
 const clickedPartyNum = ref(0);
 const userInfo = ref(JSON.parse(sessionStorage.getItem('sessionId')));
 const isApplied = ref(false);
 const applyToParty = (partyNo, userNo, Date, introduce) => {
   store.applyToParty(partyNo, userNo, Date, introduce);
   clickListReset();
-}
-
+};
 
 onMounted(() => {
   store.selectAvailableParty(userInfo.value.userNo, userInfo.value.region);

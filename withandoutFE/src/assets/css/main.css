@@ -62,6 +62,13 @@ main {
   justify-content: center;
 }
 
+.nameCard {
+  width: 40rem;
+  height: 18rem;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
 .weatherSec {
   align-items: center;
 }
@@ -88,10 +95,6 @@ main {
   margin-top: 1rem;
 }
 
-.nameCard {
-  width: 40rem;
-  height: 18rem;
-}
 .calenderView {
   width: 50.5rem;
   height: 24rem;
@@ -119,20 +122,22 @@ main {
   margin-bottom: 2rem;
 }
 
-.nameCard {
-  display: flex;
-}
-
 .halfSize {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
+
+.imageSec {
+  align-items: center;
+  width: 18vw;
+}
+
 .cardImage {
-  width: 8vw;
+  width: 14vw;
+  border-radius: 50%;
 }
 
 .cardName {
-  margin-top: 1rem;
 }

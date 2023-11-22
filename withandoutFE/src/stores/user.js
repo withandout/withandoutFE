@@ -12,6 +12,7 @@ export const useUserStore = defineStore('user', () => {
   const alertOn = ref(false);
   const townAuthorized = ref(false);
   const userEvents = ref([]);
+  const user = ref({});
 
   // 로그인
   const login = (user) => {
@@ -194,20 +195,20 @@ export const useUserStore = defineStore('user', () => {
           // color: 'red',
 
           // tempEvents.value = ;
-          console.log("이벤트 잘 받아왔어요."); 
+          console.log('이벤트 잘 받아왔어요.');
           console.log(response.data);
 
           userEvents.value.length = 0;
 
           response.data.map((event) => {
             userEvents.value.push({
-              'eventNo':event.eventNo,
-              'description': event.content,
-              'isCompleted': event.isApplied === 0 ? false : true,
-              'dates': (new Date(event.sttTime - 9*60*60*1000)),
-              // 색 추가 하나 하면 좋겠다. 
-            })
-          })
+              eventNo: event.eventNo,
+              description: event.content,
+              isCompleted: event.isApplied === 0 ? false : true,
+              dates: new Date(event.sttTime - 9 * 60 * 60 * 1000),
+              // 색 추가 하나 하면 좋겠다.
+            });
+          });
           console.log(userEvents.value);
         }
       })
@@ -216,23 +217,56 @@ export const useUserStore = defineStore('user', () => {
       });
   };
 
+  // 유저 소개글 수정
+  const modifyUserContent = (userNo, content) => {
+    axios({
+      url: `${REST_API_USER}/info/content`,
+      method: 'PUT',
+      data: {
+        userNo: userNo,
+        content: content,
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          alert('수정 성공');
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        alert('수정 실패');
+      });
+  };
+
+  const selectUser = (userNo) => {
+    const promise = axios({
+      url: `${REST_API_USER}/info/${userNo}`,
+      method: 'GET',
+    });
+    const dataPromise = promise.then((res) => res.data);
+    return dataPromise;
+  };
+
   return {
     partyList,
     checkId,
     checkNickname,
+    alertOn,
+    townAuthorized,
+    userEvents,
+    user,
     login,
     logout,
     signupUser,
     dupCheckId,
     dupCheckNick,
     selectUserParties,
-    alertOn,
     alertToggle,
     getAlertOn,
     isTownAuthorized,
-    townAuthorized,
     townAuthorize,
     getAllEvents,
-    userEvents,
+    modifyUserContent,
+    selectUser,
   };
 });
