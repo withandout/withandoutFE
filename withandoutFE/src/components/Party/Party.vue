@@ -1,12 +1,8 @@
 <template>
-  <section class="partyWrap" :class="{ partyFocus: props.identify }">
+  <section class="partyWrap" >
+    <!-- :class="{ partyFocus: props.identify }" -->
+
     <img
-      class="partyImage"
-      v-if="props.party.imgPath === ''"
-      src="@/assets/img/default_party.png"
-    />
-    <img
-      v-else
       :src="`${props.party.imgPath}`"
       class="partyImage"
       style="width: 4rem; height: 4rem; border-radius: 50%; margin-left: 1rem"
@@ -25,7 +21,7 @@
 import { defineProps } from 'vue';
 const props = defineProps({
   party: Object,
-  identify: Boolean,
+  // identify: Boolean,
 });
 </script>
 <style scoped>

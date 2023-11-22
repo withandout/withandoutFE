@@ -13,12 +13,7 @@
           {{ props.clickedParty.sizeLimit }}명
         </span>
       </section>
-      <img
-        class="clickedImage"
-        v-if="props.clickedParty.imgPath === ''"
-        src="@/assets/img/default_party.png"
-      />
-      <img v-else :src="`${props.clickedParty.imgPath}`" class="clickedImage" />
+      <img :src="`${props.clickedParty.imgPath}`" class="clickedImage" />
     </section>
     <div class="clickedContent">{{ props.clickedParty.content }}</div>
   </section>

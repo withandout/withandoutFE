@@ -10,7 +10,7 @@ export const usePartyStore = defineStore('party', () => {
   const REST_API_EVENT = `http://localhost:8080/event`;
   const REST_API_USER = `http://localhost:8080/user`;
   const router = useRouter();
-  const partyList = ref({});
+  const partyList = ref([]);
   const invitingMembers = ref({});
   const applicants = ref({});
   const applyEvents = ref({});
@@ -58,12 +58,21 @@ export const usePartyStore = defineStore('party', () => {
   };
 
   // 정원이 있는 파티 조회
-  const selectAvailableParty = () => {
+  const selectAvailableParty = (userNo, region) => {
     axios({
-      url: `${REST_API_PARTY}/info/available`,
-      method: 'GET',
+      url: `${REST_API_USER}/info/available`,
+      method: 'POST',
+      data: {
+        userNo : userNo, 
+        region : region,
+      }
     }).then((res) => {
-      partyList.value = res.data;
+      if (res.status === 200) {
+        console.log(res.data);
+        partyList.value = res.data;
+      } else {
+        console.log("조회하지 못했음")
+      }
     });
   };
 
@@ -296,7 +305,10 @@ export const usePartyStore = defineStore('party', () => {
       .then((response) => {
         if (response.status === 200) {
           console.log(content);
-          alert('잘됨' + content);
+          alert("파티에 신청했습니다. 리더의 승인을 기다려주세요!");
+          partyList.value = partyList.value.filter((party) => {
+            return party.partyNo != partyNo;
+          });
         }
       })
       .catch((e) => {
