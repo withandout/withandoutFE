@@ -149,6 +149,8 @@ main {
   height: 100%;
   flex-grow: 2;
   background-color: #172e5d;
+  background-size: cover;
+  background-position-x: 70px;
   padding: 2vw;
   color: #fefefe;
   font-weight: 600;
