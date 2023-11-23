@@ -205,7 +205,7 @@ export const useUserStore = defineStore('user', () => {
               eventNo: event.eventNo,
               description: event.content,
               isCompleted: event.isApplied === 0 ? false : true,
-              dates: new Date(event.sttTime - 9 * 60 * 60 * 1000),
+              dates: new Date(event.sttTime).getTime() - 9 * 60 * 60 * 1000,
               // 색 추가 하나 하면 좋겠다.
             });
           });
