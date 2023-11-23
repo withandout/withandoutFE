@@ -48,6 +48,7 @@
 .memberSection {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-left: 1rem;
   justify-content: flex-start;
   text-align: center;
