@@ -13,6 +13,7 @@ export const useUserStore = defineStore('user', () => {
   const townAuthorized = ref(false);
   const userEvents = ref([]);
   const user = ref({});
+  const userLog = ref({});
 
   // 로그인
   const login = (user) => {
@@ -181,6 +182,23 @@ export const useUserStore = defineStore('user', () => {
       });
   };
 
+  // 유저 운동 기록 조회
+  const getUserRunningLog = (userNo) => {
+    axios({
+      url: `${REST_API_USER}/log/${userNo}`,
+      method: 'GET',
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        userLog.value = res.data;
+        console.log(res.data)
+      }
+    })
+    .catch((e) => {
+      console.log(e)
+    });
+  };
+
   // 유저 가입 파티 조회
   const getAllEvents = (userNo) => {
     axios({
@@ -268,5 +286,7 @@ export const useUserStore = defineStore('user', () => {
     getAllEvents,
     modifyUserContent,
     selectUser,
+    getUserRunningLog,
+    userLog,
   };
 });
