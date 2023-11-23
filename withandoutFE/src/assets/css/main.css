@@ -71,6 +71,7 @@ main {
   justify-content: flex-start;
   box-shadow: none;
   border-radius: 0px;
+  text-align: left;
 }
 
 .weatherSec {
