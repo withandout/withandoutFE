@@ -4,7 +4,7 @@
       expanded
       title-position="left"
       :attributes="attributes"
-      style="height: 24rem; margin-top: 1rem; padding-top: 3rem"
+      style="height: 24rem; margin-top: 1rem; padding: 1rem"
     />
   </section>
 </template>
@@ -40,5 +40,19 @@ onMounted(() => {
   height: 50px;
   line-height: 40px;
 }
+
+.calendarView :deep(.vc-header .vc-title) {
+  font-size: 1.5rem;
+}
+
+.calendarView :deep(.vc-day-content) {
+  font-size: 1.2rem;
+}
+
+.calendarView :deep(.vc-weekday) {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
 
 </style>

@@ -5,7 +5,7 @@
     density="compact">
         <v-list-item v-for="(value ,i) in partyStore.partyLog" :key="i">
         <v-progress-linear
-            :model-value="`${value['distance']/1000*15}`"
+            :model-value="`${value['distance']/1000*12}`"
             class="mx-n5"
             color="yellow-darken-3"
             height="20"
