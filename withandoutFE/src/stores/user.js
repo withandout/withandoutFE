@@ -26,7 +26,6 @@ export const useUserStore = defineStore('user', () => {
         console.log(res.data);
         const sessionId = JSON.stringify(res.data);
         sessionStorage.setItem('sessionId', sessionId);
-        alert('로그인 완료되었습니다.');
         router.push('home');
       } else {
         alert('정보를 다시 확인해주세요.');
