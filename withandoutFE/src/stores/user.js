@@ -20,21 +20,34 @@ export const useUserStore = defineStore('user', () => {
       url: `${REST_API_USER}/login`,
       method: 'POST',
       data: user,
-    }).then((res) => {
-      console.log(res);
-      if (res.status === 200) {
-        console.log(res.data);
-        const sessionId = JSON.stringify(res.data);
-        sessionStorage.setItem('sessionId', sessionId);
-        router.push('home');
-      } else {
-        alert('정보를 다시 확인해주세요.');
-      }
     })
-    .catch((e) => {
-      console.log(e);
-      alert("로그인에 실패했습니다. 아이디와 패스워드를 확인해주세요.");
-    });
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          console.log(res.data);
+          const sessionId = JSON.stringify(res.data);
+          sessionStorage.setItem('sessionId', sessionId);
+          router.push('home');
+        } else {
+          alert('정보를 다시 확인해주세요.');
+        }
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          console.log(res.data);
+          const sessionId = JSON.stringify(res.data);
+          sessionStorage.setItem('sessionId', sessionId);
+          alert('로그인 완료되었습니다.');
+          router.push('home');
+        } else {
+          alert('정보를 다시 확인해주세요.');
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        alert('로그인에 실패했습니다. 아이디와 패스워드를 확인해주세요.');
+      });
   };
 
   // 로그아웃
@@ -89,15 +102,16 @@ export const useUserStore = defineStore('user', () => {
       url: `${REST_API_USER}/validate`,
       method: 'POST',
       data: { nickname: nickname },
-    }).then((response) => {
-      // 어떤거 날려주는지 확인하고 true/false 값 바꾸기
-      if (response.status === 200) {
-        checkNickname.value = true;
-      }
     })
-    .catch((e) => {
-      console.log(e);
-    });
+      .then((response) => {
+        // 어떤거 날려주는지 확인하고 true/false 값 바꾸기
+        if (response.status === 200) {
+          checkNickname.value = true;
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   // 유저 가입 파티 조회

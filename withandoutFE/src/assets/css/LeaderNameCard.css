@@ -1,0 +1,42 @@
+.nameCard {
+  display: flex;
+  align-items: center;
+}
+
+.halfSize {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cardImage {
+  width: 8vw;
+}
+
+.imageSec {
+  width: 14vw;
+}
+
+.leaderSec {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  flex-grow: 2;
+  background-color: #172e5d;
+  padding: 2vw;
+}
+
+.leaderSec {
+  font-size: 1.2rem;
+  color: #fefefe;
+}
+
+.cardName {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.leaderSec div {
+  margin-bottom: 1vh;
+}

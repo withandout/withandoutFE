@@ -17,8 +17,9 @@ export const usePartyStore = defineStore('party', () => {
   const partyArticles = ref({});
   const checkName = ref(false);
   const partyLog = ref([]);
+  const clickedParty = ref({});
 
-  // 아이디 중복체크
+  // 파티이름 중복체크
   const dupPartyName = (name) => {
     axios({
       url: `${REST_API_PARTY}/validate`,
@@ -59,22 +60,38 @@ export const usePartyStore = defineStore('party', () => {
   };
 
   // 정원이 있는 파티 조회
+  // const selectAvailableParty = (userNo, region) => {
+  //   axios({
+  //     url: `${REST_API_USER}/info/available`,
+  //     method: 'POST',
+  //     data: {
+  //       userNo: userNo,
+  //       region: region,
+  //     },
+  //   }).then((res) => {
+  //     if (res.status === 200) {
+  //       console.log(res.data);
+  //       partyList.value = res.data;
+  //     } else {
+  //       console.log('조회하지 못했음');
+  //     }
+  //   });
+  // };
+
   const selectAvailableParty = (userNo, region) => {
-    axios({
+    const promise = axios({
       url: `${REST_API_USER}/info/available`,
       method: 'POST',
       data: {
-        userNo : userNo, 
-        region : region,
-      }
-    }).then((res) => {
-      if (res.status === 200) {
-        console.log(res.data);
-        partyList.value = res.data;
-      } else {
-        console.log("조회하지 못했음")
-      }
+        userNo: userNo,
+        region: region,
+      },
     });
+    const dataPromise = promise.then((res) => {
+      partyList.value = res.data;
+      return res.data;
+    });
+    return dataPromise;
   };
 
   // 해당 파티의 전체 이벤트 조회하기
@@ -306,7 +323,7 @@ export const usePartyStore = defineStore('party', () => {
       .then((response) => {
         if (response.status === 200) {
           console.log(content);
-          alert("파티에 신청했습니다. 리더의 승인을 기다려주세요!");
+          alert('파티에 신청했습니다. 리더의 승인을 기다려주세요!');
           partyList.value = partyList.value.filter((party) => {
             return party.partyNo != partyNo;
           });
@@ -333,6 +350,25 @@ export const usePartyStore = defineStore('party', () => {
         console.log('못 가져왔어요.');
         console.log(e);
       });
+  // 파티 조회
+  const selectParty = (partyNo) => {
+    const promise = axios({
+      url: `${REST_API_PARTY}/info/${partyNo}`,
+      method: 'GET',
+    });
+    const dataPromise = promise.then((res) => res.data);
+    return dataPromise;
+  };
+
+  // 파티 리더 정보 조회
+  const selectLeader = (partyNo) => {
+    const promise = axios({
+      url: `${REST_API_PARTY}/member/leader/${partyNo}`,
+      method: 'GET',
+    });
+
+    const dataPromise = promise.then((res) => res.data);
+    return dataPromise;
   };
 
   return {
@@ -341,22 +377,25 @@ export const usePartyStore = defineStore('party', () => {
     applyEvents,
     applicants,
     partyList,
+    applicants,
+    partyArticles,
+    clickedParty,
+    partyLog,
     dupPartyName,
     makeParty,
     selectMembers,
     selectAllEvents,
     selectApplicatns,
     selectAvailableParty,
-    applicants,
     acceptApply,
     declineApply,
     makeEvent,
     applyEvent,
     cancelEvent,
-    partyArticles,
     getPartyArticles,
     applyToParty,
-    partyLog,
     getPartyLog,
+    selectParty,
+    selectLeader,
   };
 });

@@ -67,6 +67,8 @@ main {
   height: 18rem;
   flex-direction: row;
   justify-content: flex-start;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .weatherSec {
@@ -136,4 +138,37 @@ main {
   margin-top: 1rem;
   background-color: transparent;
   box-shadow: none;
+}
+
+.infoSec {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  flex-grow: 2;
+  background-color: #172e5d;
+  padding: 2vw;
+  color: #fefefe;
+  font-weight: 600;
+}
+
+.infoSec div {
+  margin-bottom: 2vh;
+}
+
+.cardName {
+  font-size: 1.5rem;
+}
+
+.selfIntro {
+  display: flex;
+}
+
+.modifyBtn {
+  width: 5vw;
+  height: 3vh;
+  margin-left: 1vw;
+  background-color: #fefefe;
+  color: black;
 }

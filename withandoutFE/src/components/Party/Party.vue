@@ -1,5 +1,5 @@
 <template>
-  <section class="partyWrap" >
+  <section class="partyWrap">
     <!-- :class="{ partyFocus: props.identify }" -->
 
     <img

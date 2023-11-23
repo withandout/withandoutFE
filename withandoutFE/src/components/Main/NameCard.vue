@@ -8,15 +8,19 @@
       />
       <img class="cardImage" v-else :src="`${userInfo.imgPath}`" />
     </section>
-    <section class="halfSize">
+    <section class="halfSize infoSec">
       <div class="cardName">{{ userInfo.nickname }}</div>
       <div>{{ userInfo.age }}세</div>
       <div>{{ userInfo.gender }}</div>
       <div>{{ userInfo.region }}</div>
-      <div v-if="userInfo.content === ''">자기소개가 없습니다.</div>
-      <div v-else>{{ userInfo.content }}</div>
-      <button @click.prevent="isUpdated = true">수정하기</button>
-      <div v-show="isUpdated">
+      <section class="selfIntro">
+        <div v-if="userInfo.content === ''">자기소개가 없습니다.</div>
+        <div v-else>{{ userInfo.content }}</div>
+        <button class="modifyBtn" @click.prevent="isUpdated = true">
+          수정하기
+        </button>
+      </section>
+      <div class="selfIntro" v-show="isUpdated">
         <input
           type="textarea"
           placeholder="자기소개를 입력하세요."
@@ -48,6 +52,7 @@ const modifyContent = () => {
   store.modifyUserContent(userNo, updatedContent.value);
   userInfo.value.content = updatedContent.value;
   updatedContent.value = '';
+  isUpdated.value = false;
 };
 </script>
 
