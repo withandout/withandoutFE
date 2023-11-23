@@ -1,7 +1,8 @@
 .wrapParties {
-  height: 18rem;
-  overflow: scroll;
+  height: 34vh;
+  overflow-y: scroll;
 }
+
 .invitingBtns {
   display: flex;
   justify-content: flex-end;
@@ -12,17 +13,17 @@
   font-size: 1.3rem;
   margin-left: 2rem;
 }
+
 .makeParty,
 .joinParty {
   margin-right: 2rem;
   background-color: var(--btn-color);
   box-shadow: var(--btn-shadow);
-  width: 7rem;
-  height: 2.5rem;
+  width: 7vw;
+  height: 5vh;
   font-weight: 600;
   font-size: 1.2rem;
   border-radius: 5px;
-  border: none;
 }
 
 .makeParty {
@@ -45,22 +46,26 @@
 }
 
 .invitingParty {
-  width: 36rem;
-  height: 8rem;
+  width: 38vw;
+  height: 16vh;
   border: 1px solid #a3a3a3;
   border-radius: 10px;
   display: flex;
   margin-bottom: 1rem;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
-.invitingImg {
-  width: 6rem;
-  height: 6rem;
+
+.invitingImgSec {
+  width: 10vw;
   align-self: center;
 }
 
+.invitingImg {
+  width: 7vw;
+}
+
 .invitingInfo {
-  width: 26rem;
+  /* width: 26rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;

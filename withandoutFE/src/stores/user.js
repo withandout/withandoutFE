@@ -130,8 +130,10 @@ export const useUserStore = defineStore('user', () => {
       .then((response) => {
         if (response.status === 200) {
           if (response.data == 1) {
+            console.log('authorized: true');
             townAuthorized.value = true;
           } else {
+            console.log('authroized: false');
             townAuthorized.value = false;
           }
         }
@@ -153,7 +155,7 @@ export const useUserStore = defineStore('user', () => {
       .then((response) => {
         if (response.status === 200) {
           // 수정이 잘 되었다면 반대로 Toggle
-          townAuthorized.value = !townAuthorized;
+          townAuthorized.value = true;
           alert('동네 인증이 완료되었습니다!');
         }
       })

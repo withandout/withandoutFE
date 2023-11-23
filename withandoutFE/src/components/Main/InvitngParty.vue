@@ -1,6 +1,9 @@
 <template>
   <section class="invitingParty">
-    <img class="invitingImg" :src="partyImgSrc" />
+    <section class="invitingImgSec">
+      <img class="invitingImg" :src="partyImgSrc" />
+    </section>
+
     <section class="invitingInfo">
       <section class="partyInfo">
         <div class="partyName">{{ props.party.name }}</div>
