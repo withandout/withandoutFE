@@ -35,7 +35,7 @@
   </div>
 </template>
 <script setup>
-  import { useUserStore } from '@/stores/user';
+import { useUserStore } from '@/stores/user';
 import { ref, onMounted } from 'vue';
 
 const userStore = useUserStore();
