@@ -35,4 +35,10 @@ onMounted(() => {
 <style scoped>
 @import '@/assets/css/main.css';
 @import 'v-calendar/style.css';
+
+.calendarView :deep(.vc-day-content) {
+  height: 50px;
+  line-height: 40px;
+}
+
 </style>
