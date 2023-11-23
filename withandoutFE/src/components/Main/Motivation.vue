@@ -9,6 +9,6 @@
 </template>
 <script setup></script>
 <style scoped>
-/* 나중에 border 수정할 것 */
 @import '@/assets/css/main.css';
+@import '@/assets/css/nav.css';
 </style>

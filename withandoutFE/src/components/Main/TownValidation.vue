@@ -10,7 +10,10 @@
 
       <h4 class="text-h6 font-weight-bold mb-1 text-center">현재 위치</h4>
 
-      <h4 class="text-h5 font-weight-black mb-3 text-center">
+      <h4 v-if="userLocation === ''" class="text-h8 mb-3 text-center">
+        위치 확인중
+      </h4>
+      <h4 v-else class="text-h5 font-weight-black mb-3 text-center">
         {{ userLocation }}
       </h4>
 
@@ -19,13 +22,12 @@
         class="text-h6 font-weight-bold text-black mb-4"
         color="blue"
         variant="flat"
-        :disabled="townAuthorized"
+        :disabled="userStore.townAuthorized"
         @click="userStore.townAuthorize(userNo, userLocation)"
       >
-        <!-- 값 prop 받아와서 확인해주셈 -->
         <h4
-          v-if="townAuthorized"
-          class="text-h6 font-weight-bold mb-1 text-center"
+          v-if="props.townVaild"
+          class="text-h6 font-weight-bold text-center text-white"
         >
           인증 완료
         </h4>
@@ -36,14 +38,19 @@
 </template>
 <script setup>
 import { useUserStore } from '@/stores/user';
+import { usePartyStore } from '@/stores/party';
+
 import { ref, onMounted } from 'vue';
+import { defineProps } from 'vue';
 
 const userStore = useUserStore();
-
-const townAuthorized = userStore.townAuthorized;
-
+const partyStore = usePartyStore();
+const townAuthorized = ref(false);
 const userNo = JSON.parse(sessionStorage.getItem('sessionId')).userNo;
 const userLocation = ref('');
+const props = defineProps({
+  townVaild: Boolean,
+});
 
 const initMap = function () {
   let myCenter = new kakao.maps.LatLng(33.450701, 126.570667); //카카오본사
@@ -88,6 +95,7 @@ onMounted(() => {
     }); //헤드태그에 추가
     document.head.appendChild(script);
   }
+  townAuthorized.value = props.townVaild;
 });
 </script>
 

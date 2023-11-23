@@ -1,7 +1,8 @@
 main {
   display: flex;
   flex-direction: column;
-  margin-top: 1.5rem;
+  height: 100vh;
+  justify-content: space-evenly;
 }
 
 .mainRow {
@@ -13,8 +14,8 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 22rem;
-  height: 21rem;
+  width: 24vw;
+  height: 43vh;
   background-image: url('../../assets/img/running.jpeg');
   background-color: rgba(255, 255, 255, 0.9);
   background-size: cover;
@@ -23,7 +24,7 @@ main {
   text-align: center;
   position: relative;
   isolation: isolate;
-  border-radius: 0.8rem;
+  border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
 }
 
@@ -51,8 +52,8 @@ main {
 .nameCard,
 .calendarView,
 .invitingView {
-  width: 18rem;
-  height: 21rem;
+  width: 20vw;
+  height: 43vh;
   background-color: #fefefe;
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
@@ -63,12 +64,12 @@ main {
 }
 
 .nameCard {
-  width: 40rem;
-  height: 18rem;
+  width: 42vw;
+  height: 36vh;
   flex-direction: row;
   justify-content: flex-start;
   box-shadow: none;
-  border-radius: 0;
+  border-radius: 0px;
 }
 
 .weatherSec {
@@ -100,10 +101,10 @@ main {
 .invitingView {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 40rem;
-  height: 27rem;
-  margin-top: -2rem;
+  justify-content: space-evenly;
+  width: 42vw;
+  height: 53vh;
+  margin-top: -6vh;
   background-color: #fefefe;
 }
 
@@ -111,8 +112,8 @@ main {
   font-size: 1.5rem;
   font-weight: 700;
   text-align: left;
-  margin-left: 2rem;
-  margin-bottom: 2rem;
+  margin-left: 2vw;
+  margin-bottom: 1vh;
 }
 
 .halfSize {
@@ -133,9 +134,8 @@ main {
 }
 
 .calendarView {
-  width: 50.5rem;
-  height: 24rem;
-  margin-top: 1rem;
+  width: 54vw;
+  height: 47vh;
   background-color: transparent;
   box-shadow: none;
 }
