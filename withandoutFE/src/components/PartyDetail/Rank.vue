@@ -3,8 +3,10 @@
     <div class="d-flex justify-center mt-auto text-h5">🏅이번주 랭킹</div>
     <div>
       <div class="d-flex align-center flex-column my-auto">
-        <!-- <div class="text-h4">{{ partyStore.partyLog[0].nickname }}</div>
-        <div class="mt-2">일주일 동안 {{ partyStore.partyLog[0].distance }} m 를 달렸어요 !!</div> -->
+        <template v-if="partyStore.partyLog.length > 0">
+          <div class="text-h4">{{ partyStore.partyLog[0].nickname }}</div>
+          <div class="mt-2">일주일 동안 {{ partyStore.partyLog[0].distance }} m 를 달렸어요 !!</div>
+        </template>
       </div>
       <RankByDistance />
     </div>
