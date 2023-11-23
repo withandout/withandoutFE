@@ -5,13 +5,15 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
 .detailRow {
   display: flex;
   justify-content: space-evenly;
 }
+
 .rankComponent {
-  width: 35vw;
-  height: 40vh;
+  width: 40.1vw;
+  height: 45vh;
   background-color: #fefefe;
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
@@ -35,8 +37,9 @@
 .members {
   display: flex;
   flex-direction: column;
-  width: 45vw;
-  height: 40vh;
+  width: 48vw;
+  height: 45vh;
+  padding: 0 1vw;
 }
 
 .memberH1 {

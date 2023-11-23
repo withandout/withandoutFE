@@ -1,7 +1,17 @@
 <template>
   <section class="partyList" :class="{ disable: isApplied }">
     <section class="parties">
-      <section v-for="party in store.partyList" :key="party.partyNo">
+      <section
+        class="eachParties"
+        v-for="party in store.partyList"
+        :key="party.partyNo"
+      >
+        <!-- <div
+          class="partyHidden"
+          :class="{ partyChecked: selectedPartyNo === party.partyNo }"
+        >
+          ✓
+        </div> -->
         <Party
           :party="party"
           @click="selectedParty(party.partyNo)"

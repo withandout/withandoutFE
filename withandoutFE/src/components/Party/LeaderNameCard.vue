@@ -7,6 +7,7 @@
         src="@/assets/upload/defaultUser.png"
       />
       <img class="cardImage" v-else :src="`${props.leader.imgPath}`" />
+      <div class="badge">리더</div>
     </section>
     <section class="halfSize leaderSec">
       <div class="cardName">{{ props.leader.nickname }}</div>

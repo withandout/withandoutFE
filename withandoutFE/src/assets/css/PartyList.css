@@ -63,11 +63,10 @@
   flex-direction: column;
   height: 100%;
   justify-content: space-evenly;
-  width: 20vw;
+  width: 26vw;
 }
 
 .partyName {
-  width: 15vw;
   font-size: 2rem;
   font-weight: 600;
 }
@@ -84,13 +83,38 @@
 }
 
 .partySports {
+  position: relative;
   font-size: 1.5rem;
   font-weight: 500;
 }
 
+/* .eachParties {
+  position: relative;
+} */
+
 .partyFocus {
   border: 2px solid #7aa6ff;
 }
+
+/* .partyHidden {
+  visibility: hidden;
+}
+
+.partyChecked {
+  visibility: visible;
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  top: -1vw;
+  left: 1vw;
+  text-align: center;
+  line-height: 3.2vw;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fefefe;
+  background-color: #7aa6ff;
+} */
 
 .joinPartyWrap {
   display: flex;

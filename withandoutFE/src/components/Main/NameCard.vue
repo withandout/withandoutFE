@@ -20,7 +20,7 @@
           수정하기
         </button>
       </section>
-      <div class="selfIntro" v-show="isUpdated">
+      <div class="selfIntro" v-if="isUpdated">
         <input
           type="textarea"
           placeholder="자기소개를 입력하세요."
