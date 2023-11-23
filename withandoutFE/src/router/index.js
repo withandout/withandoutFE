@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import {useUserStore} from '../stores/user';
+
+const isAuth = useUserStore.loginAuthorized;
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,6 +11,11 @@ const router = createRouter({
       alias: ['/index', '/login'],
       name: 'login',
       component: () => import('@/views/LoginView.vue'),
+      beforeEnter: (to, from) => {
+        if (sessionStorage.getItem('sessionId') != null) {
+          return {name: 'home'};
+        }
+      }
     },
     {
       path: '/signup',
@@ -36,5 +44,13 @@ const router = createRouter({
     },
   ],
 });
+
+router.beforeEach(async (to, from) => {
+
+  if ((sessionStorage.getItem('sessionId') == null) && (to.name != 'login' && to.name != 'signup')) {
+    alert("로그인이 필요합니다.");
+    return {name: 'login'};
+  }
+})
 
 export default router;
