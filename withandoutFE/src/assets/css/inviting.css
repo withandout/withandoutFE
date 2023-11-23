@@ -92,6 +92,7 @@
 .partyContent {
   margin-top: 1rem;
   display: flex;
+  overflow-x: scroll;
 }
 
 .memberImg {
