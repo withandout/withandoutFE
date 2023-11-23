@@ -343,13 +343,14 @@ export const usePartyStore = defineStore('party', () => {
       .then((response) => {
         if (response.status === 200) {
           partyLog.value = response.data;
-          console.log(response.data)
+          console.log(response.data);
         }
       })
       .catch((e) => {
         console.log('못 가져왔어요.');
         console.log(e);
       });
+  };
   // 파티 조회
   const selectParty = (partyNo) => {
     const promise = axios({
