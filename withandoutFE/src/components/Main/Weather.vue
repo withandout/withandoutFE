@@ -12,8 +12,11 @@
       src="@/assets/img/weather/weather_foggy.png"
     />
     <img class="weather" v-else src="@/assets/img/weather/weather_sunny.png" />
-    <div class="tmp">{{ tmp }}℃</div>
-    <div class="reh">습도 {{ reh }}%</div>
+    <div class="tmp" v-if="tmp">{{ tmp }}℃</div>
+    <div class="tmp" v-else>불러오는 중</div>
+
+    <div class="ref" v-if="reh === 0">불러오는 중</div>
+    <div class="ref" v-else>습도 {{ reh }}%</div>
   </section>
 </template>
 

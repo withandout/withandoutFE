@@ -154,7 +154,7 @@ main {
 }
 
 .infoSec div {
-  margin-bottom: 2vh;
+  margin: 0.5vh 0;
 }
 
 .cardName {
@@ -163,6 +163,13 @@ main {
 
 .selfIntro {
   display: flex;
+}
+.selfIntro input {
+  color: #e5e5e5;
+}
+
+.selfIntro input::placeholder {
+  color: #e5e5e5;
 }
 
 .modifyBtn {

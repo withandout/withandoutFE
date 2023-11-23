@@ -1,7 +1,5 @@
 <template>
   <section class="partyWrap">
-    <!-- :class="{ partyFocus: props.identify }" -->
-
     <img
       :src="`${props.party.imgPath}`"
       class="partyImage"
@@ -21,7 +19,6 @@
 import { defineProps } from 'vue';
 const props = defineProps({
   party: Object,
-  // identify: Boolean,
 });
 </script>
 <style scoped>

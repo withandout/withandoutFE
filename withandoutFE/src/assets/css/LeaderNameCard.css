@@ -9,7 +9,22 @@
   align-items: center;
 }
 .cardImage {
+  position: relative;
   width: 8vw;
+}
+
+.badge {
+  position: absolute;
+  width: 4vw;
+  margin-right: 6vw;
+  margin-top: -1vh;
+  height: 4vh;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 4vh;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: var(--btn-color);
 }
 
 .imageSec {

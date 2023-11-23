@@ -1,6 +1,8 @@
 <template>
-  <v-card class="d-flex flex-column mx-auto py-2 rankComponent">
-    <div class="d-flex justify-center mt-auto text-h5">🏅이번주 랭킹</div>
+  <v-card class="d-flex flex-column py-2 rankComponent">
+    <div class="d-flex justify-center mt-auto text-h4 font-weight-bold">
+      🏅이번주 랭킹
+    </div>
     <div>
       <div class="d-flex align-center flex-column my-auto">
         <template v-if="partyStore.partyLog.length > 0">
