@@ -126,6 +126,9 @@ const selectedParty = (partyNo) => {
   store.selectParty(partyNo).then((data) => {
     selectedPartyNo.value = partyNo;
     clickedParty.value = data;
+    store.selectLeader(selectedPartyNo.value).then((data) => {
+      leader.value = data;
+    });
   });
 };
 </script>

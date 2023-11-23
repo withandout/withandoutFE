@@ -32,9 +32,9 @@
 }
 
 .parties {
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background-color: #fefefe;
-  box-shadow: var(--btn-shadow);
+  /* box-shadow: var(--btn-shadow); */
 }
 
 .partyWrap {
@@ -121,8 +121,9 @@
   flex-direction: column;
   height: 45vh;
   background-color: #fefefe;
-  box-shadow: var(--btn-shadow);
-  border-radius: 10px;
+  /* box-shadow: var(--btn-shadow); */
+  /* border-radius: 10px; */
+  box-shadow: 2px 2px 2px rgba(34, 70, 142, 0.307);
 }
 
 .clickPartyInfo {

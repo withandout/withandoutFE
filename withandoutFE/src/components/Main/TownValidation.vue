@@ -1,8 +1,7 @@
 <template>
   <div>
     <v-sheet
-      border="md"
-      class="pa-6 text-black mx-auto"
+      class="pa-6 text-black mx-auto alert"
       color="#FEFEFE"
       max-width="250"
     >

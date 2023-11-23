@@ -15,8 +15,9 @@
   width: 40.1vw;
   height: 45vh;
   background-color: #fefefe;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
+  /* border-radius: 10px; */
+  /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%); */
+  box-shadow: 2px 2px 2px rgba(34, 70, 142, 0.307);
 }
 
 .galleryView {
@@ -24,8 +25,9 @@
   width: 45vw;
   height: 45vh;
   background-color: #fefefe;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%);
+  /* border-radius: 10px; */
+  /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 25%); */
+  box-shadow: 2px 2px 2px rgba(34, 70, 142, 0.307);
 }
 
 .gallery {
