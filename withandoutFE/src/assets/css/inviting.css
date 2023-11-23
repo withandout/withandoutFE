@@ -92,6 +92,7 @@
 .partyContent {
   margin-top: 1rem;
   display: flex;
+  width: 27vw;
   overflow-x: scroll;
 }
 
