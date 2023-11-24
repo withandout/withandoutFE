@@ -20,19 +20,22 @@
           />
         </section>
       </template>
-      <h1 v-else>참여할 수 있는 파티가 없습니다.</h1>
+      <div class="noParty" v-else>참여할 수 있는 파티가 없어요🥲</div>
     </section>
     <section class="partyInfo">
       <template v-if="parties.length > 0">
         <PartyInfo :clickedParty="clickedParty" />
       </template>
-      <h1 v-else>파티 정보가 없습니다.</h1>
+      <div class="noParty" v-else>파티 정보가 없어요🥲</div>
       <template v-if="parties.length > 0">
         <LeaderNameCard :leader="leader" />
       </template>
-      <h1 v-else>리더가 없습니다.</h1>
+      <div class="noParty" v-else>리더를 확인할 수 없어요🥲</div>
       <section class="partyBtns">
-        <button @click.prevent="isApplied = true">신청하기</button>
+        <button v-if="parties.length > 0" @click.prevent="isApplied = true">
+          신청하기
+        </button>
+        <button v-else disabled>신청하기</button>
         <button @click.prevent="() => router.push({ name: 'home' })">
           나가기
         </button>

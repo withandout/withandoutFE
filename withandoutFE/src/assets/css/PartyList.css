@@ -250,3 +250,10 @@
   margin-left: 2vw;
   background-color: #ffb84c;
 }
+
+.noParty {
+  font-size: 2rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  font-weight: 600;
+}
