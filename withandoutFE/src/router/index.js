@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import {useUserStore} from '../stores/user';
 
-const isAuth = useUserStore.loginAuthorized;
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -31,16 +29,34 @@ const router = createRouter({
       path: '/make-party',
       name: 'makeParty',
       component: () => import('@/views/MakingPartyView.vue'),
+      beforeEnter: (to, from) => {
+        if (JSON.parse(sessionStorage.getItem('sessionId'))['isAuthorized'] != 1) {
+          alert("동네 인증을 먼저 완료해주세요.")
+          return {name: 'home'};
+        }
+      }
     },
     {
       path: '/join-party',
       name: 'joinParty',
       component: () => import('@/views/JoinPartyView.vue'),
+      beforeEnter: (to, from) => {
+        if (JSON.parse(sessionStorage.getItem('sessionId'))['isAuthorized'] != 1) {
+          alert("동네 인증을 먼저 완료해주세요.")
+          return {name: 'home'};
+        }
+      }
     },
     {
       path: '/party/detail/:partyNo',
       name: 'detail',
       component: () => import('@/views/DetailPartyView.vue'),
+      beforeEnter: (to, from) => {
+        if (JSON.parse(sessionStorage.getItem('sessionId'))['isAuthorized'] != 1) {
+          alert("동네 인증을 먼저 완료해주세요.")
+          return {name: 'home'};
+        }
+      }
     },
   ],
 });

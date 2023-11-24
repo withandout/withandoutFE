@@ -310,6 +310,12 @@ export const usePartyStore = defineStore('party', () => {
 
   // 파티 신청하기
   const applyToParty = (partyNo, userNo, invitedDate, content) => {
+    console.log({
+      partyNo, 
+      userNo, 
+      invitedDate, 
+      content,
+    })
     axios({
       url: `${REST_API_PARTY}/apply`,
       method: 'POST',

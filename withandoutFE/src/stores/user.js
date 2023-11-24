@@ -157,6 +157,11 @@ export const useUserStore = defineStore('user', () => {
         if (response.status === 200) {
           // 수정이 잘 되었다면 반대로 Toggle
           townAuthorized.value = true;
+
+          const sessionId = JSON.parse(sessionStorage.getItem("sessionId"));
+          sessionId.isAuthorized = 1;
+          sessionStorage.setItem("sessionId", JSON.stringify(sessionId));
+          // console.log(sessionId);
           alert('동네 인증이 완료되었습니다!');
         }
       })
@@ -247,7 +252,7 @@ export const useUserStore = defineStore('user', () => {
     })
       .then((res) => {
         if (res.status === 200) {
-          alert('수정 성공');
+          alert('자기소개를 수정했습니다.');
         }
       })
       .catch((e) => {
