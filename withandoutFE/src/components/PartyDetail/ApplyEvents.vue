@@ -1,9 +1,12 @@
 <template>
-  <section class="applyEvents">
+  <section
+    class="applyEvents"
+    :class="{ nono: store.applyEvents.length === 0 }"
+  >
     <section class="wrapEvents">
-      <section v-if="store.applyEvents.length === 0">
+      <template v-if="store.applyEvents.length === 0">
         <div class="noEvents">이벤트 없어요. 등록해주세요.</div>
-      </section>
+      </template>
       <section v-else>
         <template v-for="event in store.applyEvents">
           <EachEvents :event="event" />

@@ -1,6 +1,6 @@
 <template>
   <v-card class="d-flex flex-column py-2 rankComponent">
-    <div class="d-flex justify-center mt-auto text-h4 font-weight-bold">
+    <div class="d-flex justify-center mt-4 text-h4 font-weight-bold">
       🏅이번주 랭킹
     </div>
     <div>

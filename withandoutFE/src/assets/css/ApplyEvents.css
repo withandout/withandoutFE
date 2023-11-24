@@ -9,6 +9,10 @@
   /* border-radius: 10px; */
 }
 
+.nono {
+  background-color: transparent;
+}
+
 .wrapEvents {
   height: 43vh;
   overflow-y: scroll;
@@ -26,7 +30,8 @@
 
 .noEvents {
   width: 47vw;
-  height: 40vh;
+  height: 43vh;
+  overflow: hidden;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
